@@ -1,10 +1,10 @@
-package com.kampus.kshop;
+package com.kampus.kbazaar;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class KshopApplicationTests {
+class KBazaarApplicationTests {
 
 	@Test
 	void contextLoads() {
