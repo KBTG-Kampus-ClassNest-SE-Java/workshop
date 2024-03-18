@@ -19,26 +19,37 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
       - name: Set up JDK 17
         uses: actions/setup-java@v1
         with:
           java-version: 17
-      - name: Cache SonarQube packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
+
       - name: Cache Gradle packages
-        uses: actions/cache@v3
+        id: gradle-cache
+        uses: actions/cache@v2
         with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: download dependencies
+        if: ${{ steps.gradle-cache.outputs.cache-hit != 'true' }}
+        working-directory: ./kshop
+        run: ./gradlew dependencies
+
+      - name: Run test
+        working-directory: ./kshop
+        run: ./gradlew test
+
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        working-directory: ./kshop
         run: ./gradlew build sonar --info
 
   build-and-push-docker-image:
@@ -47,21 +58,9 @@ jobs:
     needs: quality-check
 
     steps:
-      - name: Set up JDK 17
-        uses: actions/setup-java@v1
-        with:
-          java-version: 17
-
       - uses: actions/checkout@v4
-
-      - name: Run test
-        run: ./gradlew test
-
       - name: Setup SHA
         run: echo "GITHUB_SHA=${GITHUB_SHA}" >> $GITHUB_ENV
-
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag ghcr.io/aorjoa-bootcamp/devops-java-example:${{ env.GITHUB_SHA }}
 
       - name: Login ghcr.io
         uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
@@ -73,17 +72,9 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
-          context: .
+          context: ./kshop
           push: ${{ github.ref == 'refs/heads/main' }}
-          tags: ${{ env.GITHUB_SHA }}
-
-      - name: Push to GitHub Container Registry
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          tags: |
-            ghcr.io/aorjoa-bootcamp/devops-java-example:${{ env.GITHUB_SHA }}
-          push: ${{ github.ref == 'refs/heads/main' }}
+          tags: ghcr.io/aorjoa/workshop-java:${{ env.GITHUB_SHA }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
@@ -94,23 +85,18 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-push-docker-image
     steps:
-      - name: checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          repository: aorjoa-bootcamp/devops-argocd
-          persist-credentials: false
           fetch-depth: 0
       - name: change image tag
         run: |
           git --version
           git config user.name "aorjoa"
           git config user.email "root@aorjoa.link"
-          sed -i -E "s/ghcr.io\/aorjoa-bootcamp\/devops-java-example.*$/ghcr.io\/aorjoa-bootcamp\/devops-java-example:${GITHUB_SHA}/" kube-gitops/deployment.yml
-          git add kube-gitops/deployment.yml
+          sed -i -E "s/ghcr.io\/aorjoa\/workshop-java.*$/ghcr.io\/aorjoa\/workshop-java:${GITHUB_SHA}/" infra/dev/deployment.yml
+          git add infra/dev/deployment.yml
           git commit -m "🤖 change docker image version to ${GITHUB_SHA}"
       - name: push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.PAT }}
-          repository: aorjoa-bootcamp/devops-argocd
           branch: main
