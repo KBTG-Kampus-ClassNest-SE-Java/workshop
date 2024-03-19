@@ -14,7 +14,7 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 public class DependencyRuleTest {
 
     @ArchTest
-    static final ArchRule service_packages =
+    static final ArchRule service_should_access_by_controller =
             classes().that()
                     .areAnnotatedWith(Service.class)
                     .should().onlyBeAccessed().byClassesThat()
@@ -22,7 +22,7 @@ public class DependencyRuleTest {
                     .allowEmptyShould(true);
 
     @ArchTest
-    static final ArchRule repository_packages =
+    static final ArchRule repository_should_access_by_service =
             classes().that()
                     .areAnnotatedWith(Repository.class)
                     .should().onlyBeAccessed().byClassesThat()
