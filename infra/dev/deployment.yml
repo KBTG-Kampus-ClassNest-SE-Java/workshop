@@ -14,18 +14,18 @@ spec:
         app: api
     spec:
       containers:
-      - name: kshop-api
-        image: ghcr.io/aorjoa/workshop-java:342b25a526f325f284259db8f71d8c866b2b527d
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 9090
-        env:
-        - name: SERVER_PORT
-          valueFrom:
-            configMapKeyRef:
-              name: app-config
-              key: api.service.port
-        resources:
-          limits:
-            cpu: 2
-            memory: 512Mi
+        - name: kbazaar-api
+          image: ghcr.io/aorjoa/workshop-java:342b25a526f325f284259db8f71d8c866b2b527d
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9090
+          env:
+            - name: SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: api.service.port
+          resources:
+            limits:
+              cpu: 2
+              memory: 512Mi

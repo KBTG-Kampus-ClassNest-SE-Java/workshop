@@ -38,18 +38,18 @@ jobs:
 
       - name: download dependencies
         if: ${{ steps.gradle-cache.outputs.cache-hit != 'true' }}
-        working-directory: ./kshop
+        working-directory: ./kbazaar
         run: ./gradlew dependencies
 
       - name: Run test
-        working-directory: ./kshop
+        working-directory: ./kbazaar
         run: ./gradlew test
 
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        working-directory: ./kshop
+        working-directory: ./kbazaar
         run: ./gradlew build sonar --info
 
   build-and-push-docker-image:
@@ -72,7 +72,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
-          context: ./kshop
+          context: ./kbazaar
           push: ${{ github.ref == 'refs/heads/main' }}
           tags: ghcr.io/aorjoa/workshop-java:${{ env.GITHUB_SHA }}
 

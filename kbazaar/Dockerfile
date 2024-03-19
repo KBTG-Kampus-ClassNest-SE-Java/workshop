@@ -7,5 +7,5 @@ RUN ["./gradlew","bootJar"]
 # stage-2 running image
 FROM gcr.io/distroless/java17-debian12:latest
 WORKDIR /app
-COPY --from=builder /app/build/libs/kshop-0.0.1-SNAPSHOT.jar kshop-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java", "-jar", "kshop-0.0.1-SNAPSHOT.jar"]
+COPY --from=builder /app/build/libs/kbazaar-0.0.1-SNAPSHOT.jar kbazaar-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java", "-jar", "kbazaar-0.0.1-SNAPSHOT.jar"]
