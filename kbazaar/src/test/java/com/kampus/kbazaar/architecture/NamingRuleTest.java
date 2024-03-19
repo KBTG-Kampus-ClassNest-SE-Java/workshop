@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
 @AnalyzeClasses(packages = "com.kampus.kbazaar", importOptions = ImportOption.DoNotIncludeTests.class)
-public class NamingTest {
+public class NamingRuleTest {
     @ArchTest
     static ArchRule rest_controller_naming_should_ending_with_controller =
             classes()
