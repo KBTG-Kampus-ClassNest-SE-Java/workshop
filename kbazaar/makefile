@@ -1,7 +1,8 @@
-# install dependencies gradle
-install:
+build:
 	./gradlew build
-	./gradlew install
+
+clean:
+	./gradlew clean
 
 run:
 	./gradlew bootRun
