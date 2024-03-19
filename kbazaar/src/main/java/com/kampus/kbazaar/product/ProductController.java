@@ -17,8 +17,8 @@ public class ProductController {
     };
 
     @GetMapping("/products")
-    public Product[] getProducts() {
-        return productsDB;
+    public ResponseEntity getProducts() {
+        return ResponseEntity.ok(productsDB);
     }
 
     @GetMapping("/products/{sku}")

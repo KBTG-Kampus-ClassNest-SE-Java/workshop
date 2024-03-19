@@ -1,6 +1,7 @@
 package com.kampus.kbazaar.cart;
 
 import com.kampus.kbazaar.product.Product;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -24,10 +25,12 @@ public class CartController {
 
 
     @PostMapping("/carts/{id}/additems")
-    public Cart addProductToCart(@PathVariable String id, @RequestBody Product[] products) {
-        return new Cart(1, new Product[]{
+    public ResponseEntity addProductToCart(@PathVariable String id, @RequestBody Product[] products) {
+        Cart cart = new Cart(1, new Product[]{
                 new Product("sku1", "product1", 100, 1),
         });
+
+        return ResponseEntity.ok(cart);
     }
 
 }
