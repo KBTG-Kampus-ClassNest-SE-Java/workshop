@@ -1,5 +1,6 @@
 package com.kampus.kbazaar.user;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,14 +21,13 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable String id) {
-        System.out.println("id: " + id);
+    public ResponseEntity<User> getUserById(@PathVariable String id) {
         for (User user : users) {
             if (user.getId() == Integer.parseInt(id)) {
-                return user;
+                return ResponseEntity.ok(user);
             }
         }
-        //      how to return ?  {"message": "User not found"}
-        return null;
+				// TODO: return {"message": "User not found"}
+        return ResponseEntity.notFound().build();
     }
 }

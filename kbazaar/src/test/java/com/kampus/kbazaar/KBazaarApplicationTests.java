@@ -10,6 +10,9 @@ class KBazaarApplicationTests {
 
     @Test
     void contextLoads() {
-        assertEquals(1, 1);
+        int want = 1;
+        int got = 1;
+
+        assertEquals(want, got);
     }
 }

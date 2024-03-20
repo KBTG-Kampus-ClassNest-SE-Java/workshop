@@ -7,8 +7,14 @@ clean:
 run:
 	./gradlew bootRun
 
+test:
+	./gradlew test
+
 format:
 	./gradlew spotlessApply
+
+sonar:
+	./gradlew sonarqube
 
 health:
 	curl -X GET http://localhost:8080/api/v1/health

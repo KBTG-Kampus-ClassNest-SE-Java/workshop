@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1")
 public class ProductController {
-    public static Product[] productsDB =
+    protected static final Product[] productsDB =
             new Product[] {
                 new Product("sku1", "Product 1", 100.0, 10),
                 new Product("sku2", "Product 2", 200.0, 20),
@@ -17,18 +17,18 @@ public class ProductController {
             };
 
     @GetMapping("/products")
-    public ResponseEntity getProducts() {
+    public ResponseEntity<Product[]> getProducts() {
         return ResponseEntity.ok(productsDB);
     }
 
     @GetMapping("/products/{sku}")
-    public ResponseEntity getProductById(@PathVariable String sku) {
-        System.out.println("sku: " + sku);
+    public ResponseEntity<Product> getProductById(@PathVariable String sku) {
         for (Product product : productsDB) {
             if (product.getSku().equals(sku)) {
                 return ResponseEntity.ok(product);
             }
         }
+
         return ResponseEntity.notFound().build();
     }
 }

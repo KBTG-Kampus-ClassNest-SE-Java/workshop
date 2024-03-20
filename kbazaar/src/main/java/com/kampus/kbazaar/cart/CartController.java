@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1")
 public class CartController {
-    public static Cart[] carts =
+    protected static final Cart[] carts =
             new Cart[] {
                 new Cart(
                         1,
@@ -27,7 +27,7 @@ public class CartController {
             };
 
     @PostMapping("/carts/{id}/additems")
-    public ResponseEntity addProductToCart(
+    public ResponseEntity<Cart> addProductToCart(
             @PathVariable String id, @RequestBody Product[] products) {
         Cart cart =
                 new Cart(
