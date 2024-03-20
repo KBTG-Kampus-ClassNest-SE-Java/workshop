@@ -17,7 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 public class ProductController {
 
-    @Autowired private ProductRepository productRepository;
+    private ProductRepository productRepository;
+
+    public ProductController(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     protected static final Product[] productsDB =
             new Product[] {
