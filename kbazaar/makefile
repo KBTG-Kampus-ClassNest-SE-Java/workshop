@@ -7,6 +7,9 @@ clean:
 run:
 	./gradlew bootRun
 
+format:
+	./gradlew spotlessApply
+
 health:
 	curl -X GET http://localhost:8080/api/v1/health
 

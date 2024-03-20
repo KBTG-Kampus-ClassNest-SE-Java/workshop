@@ -3,7 +3,6 @@ package com.kampus.kbazaar.cart;
 import com.kampus.kbazaar.product.Product;
 import lombok.Data;
 
-
 @Data
 public class Cart {
     private int userID;

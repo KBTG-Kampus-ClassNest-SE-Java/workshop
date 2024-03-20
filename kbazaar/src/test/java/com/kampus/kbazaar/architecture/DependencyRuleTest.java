@@ -1,5 +1,7 @@
 package com.kampus.kbazaar.architecture;
 
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
+
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
@@ -8,24 +10,30 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
-
-@AnalyzeClasses(packages = "com.kampus.kbazaar", importOptions = ImportOption.DoNotIncludeTests.class)
+@AnalyzeClasses(
+        packages = "com.kampus.kbazaar",
+        importOptions = ImportOption.DoNotIncludeTests.class)
 public class DependencyRuleTest {
 
     @ArchTest
     static final ArchRule service_should_access_by_controller =
-            classes().that()
+            classes()
+                    .that()
                     .areAnnotatedWith(Service.class)
-                    .should().onlyBeAccessed().byClassesThat()
+                    .should()
+                    .onlyBeAccessed()
+                    .byClassesThat()
                     .areAnnotatedWith(RestController.class)
                     .allowEmptyShould(true);
 
     @ArchTest
     static final ArchRule repository_should_access_by_service =
-            classes().that()
+            classes()
+                    .that()
                     .areAnnotatedWith(Repository.class)
-                    .should().onlyBeAccessed().byClassesThat()
+                    .should()
+                    .onlyBeAccessed()
+                    .byClassesThat()
                     .areAnnotatedWith(Service.class)
                     .allowEmptyShould(true);
 }
