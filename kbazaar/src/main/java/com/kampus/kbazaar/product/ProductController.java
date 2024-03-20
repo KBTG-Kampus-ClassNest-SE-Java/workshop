@@ -1,5 +1,7 @@
 package com.kampus.kbazaar.product;
 
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,15 +11,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1")
 public class ProductController {
+
+    @Autowired private ProductRepository productRepository;
+
     protected static final Product[] productsDB =
             new Product[] {
-                new Product("sku1", "Product 1", 100.0, 10),
-                new Product("sku2", "Product 2", 200.0, 20),
-                new Product("sku3", "Product 3", 300.0, 30)
+                new Product(1L, "Product 1", "sku-1", 100.0, 10),
             };
 
     @GetMapping("/products")
     public ResponseEntity<Product[]> getProducts() {
+        List<Product> pros = productRepository.findAll();
+
+        System.out.println("Products:");
+        System.out.println(pros.size());
+        for (Product product : pros) {
+            System.out.println(product);
+        }
+        System.out.println(":done");
+
         return ResponseEntity.ok(productsDB);
     }
 

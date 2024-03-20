@@ -9,20 +9,16 @@ import org.springframework.web.bind.annotation.*;
 public class CartController {
     protected static final Cart[] carts =
             new Cart[] {
-                new Cart(
-                        1,
-                        new Product[] {
-                            new Product("sku1", "product1", 100, 1),
-                        }),
+                new Cart(1, new Product[] {new Product(11L, "Product 1", "sku-1", 100.0, 10)}),
                 new Cart(
                         2,
                         new Product[] {
-                            new Product("sku2", "product2", 200, 2),
+                            new Product(22L, "Product 2", "sku-2", 200.0, 2),
                         }),
                 new Cart(
                         3,
                         new Product[] {
-                            new Product("sku3", "product3", 300, 3),
+                            new Product(33L, "Product 3", "sku-3", 300.0, 3),
                         }),
             };
 
@@ -33,7 +29,9 @@ public class CartController {
                 new Cart(
                         1,
                         new Product[] {
-                            new Product("sku1", "product1", 100, 1),
+                            new Product(11L, "Product 1", "sku-1", 100.0, 10),
+                            new Product(22L, "Product 2", "sku-2", 200.0, 2),
+                            new Product(33L, "Product 3", "sku-3", 300.0, 3),
                         });
 
         return ResponseEntity.ok(cart);
