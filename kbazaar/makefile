@@ -13,6 +13,9 @@ test:
 format:
 	./gradlew spotlessApply
 
+format-check:
+	./gradlew spotlessCheck
+
 sonar:
 	./gradlew sonarqube
 
