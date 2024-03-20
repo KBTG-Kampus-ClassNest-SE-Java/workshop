@@ -1,5 +1,10 @@
 package com.kampus.kbazaar.product;
 
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +24,23 @@ public class ProductController {
                 new Product(1L, "Product 1", "sku-1", 100.0, 10),
             };
 
+    @ApiResponses({
+        @ApiResponse(
+                responseCode = "200",
+                description = "list all products",
+                content = {
+                    @Content(
+                            mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = Product.class)))
+                }),
+        @ApiResponse(
+                responseCode = "500",
+                description = "internal server error",
+                content =
+                        @Content(
+                                mediaType = "application/json",
+                                schema = @Schema(implementation = Error.class)))
+    })
     @GetMapping("/products")
     public ResponseEntity<Product[]> getProducts() {
         List<Product> pros = productRepository.findAll();
