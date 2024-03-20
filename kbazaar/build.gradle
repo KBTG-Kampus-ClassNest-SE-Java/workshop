@@ -57,5 +57,7 @@ sonar {
   properties {
 	property "sonar.gradle.skipCompile", "true"
 	property "sonar.projectKey", "aorjoa-bootcamp"
+	property "sonar.token", System.getenv("SONAR_TOKEN")
+	property "sonar.host.url", System.getenv("SONAR_HOST_URL")
   }
 }
