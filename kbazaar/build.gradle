@@ -49,6 +49,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	// testImplementation 'org.springframework.security:spring-security-test'
 	testImplementation 'com.tngtech.archunit:archunit-junit5:1.2.1'
+	testImplementation 'org.testcontainers:postgresql:1.15.3'
 }
 
 tasks.named('test') {
