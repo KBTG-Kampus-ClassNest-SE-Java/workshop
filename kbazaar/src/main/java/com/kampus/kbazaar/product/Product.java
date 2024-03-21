@@ -29,4 +29,8 @@ public class Product {
 
     @Column(name = "quantity")
     private int quantity;
+
+    public ProductResponse toResponse() {
+        return new ProductResponse(this.id, this.name, this.sku, this.price, this.quantity);
+    }
 }

@@ -5,7 +5,9 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,56 +19,37 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 public class ProductController {
 
-    private ProductRepository productRepository;
 
-    public ProductController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    private ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
-    protected static final Product[] productsDB =
-            new Product[] {
-                new Product(1L, "Product 1", "sku-1", 100.0, 10),
-            };
-
     @ApiResponses({
-        @ApiResponse(
-                responseCode = "200",
-                description = "list all products",
-                content = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "list all products",
+                    content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = ProductResponse.class)))
+                    }),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "internal server error",
+                    content =
                     @Content(
                             mediaType = "application/json",
-                            array = @ArraySchema(schema = @Schema(implementation = Product.class)))
-                }),
-        @ApiResponse(
-                responseCode = "500",
-                description = "internal server error",
-                content =
-                        @Content(
-                                mediaType = "application/json",
-                                schema = @Schema(implementation = Error.class)))
+                            schema = @Schema(implementation = Error.class)))
     })
     @GetMapping("/products")
-    public ResponseEntity<Product[]> getProducts() {
-        List<Product> pros = productRepository.findAll();
-
-        System.out.println("Products:");
-        System.out.println(pros.size());
-        for (Product product : pros) {
-            System.out.println(product);
-        }
-        System.out.println(":done");
-
-        return ResponseEntity.ok(productsDB);
+    public List<ProductResponse> getProducts() {
+        return productService.getAll();
     }
 
     @GetMapping("/products/{sku}")
-    public ResponseEntity<Product> getProductById(@PathVariable String sku) {
-        for (Product product : productsDB) {
-            if (product.getSku().equals(sku)) {
-                return ResponseEntity.ok(product);
-            }
-        }
-
-        return ResponseEntity.notFound().build();
+    public ProductResponse getProductById(@PathVariable String sku) {
+        return productService.getBySku(sku);
     }
 }
