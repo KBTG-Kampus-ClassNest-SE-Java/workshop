@@ -1,28 +1,23 @@
 package com.kampus.kbazaar.product;
 
-import jdk.jfr.Name;
-import org.junit.jupiter.api.AfterEach;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
-
 class ProductServiceTest {
 
-    @Mock
-    private ProductRepository productRepository;
+    @Mock private ProductRepository productRepository;
 
-    @InjectMocks
-    private ProductService productService;
+    @InjectMocks private ProductService productService;
 
     @BeforeEach
     void setUp() {
@@ -32,7 +27,8 @@ class ProductServiceTest {
     @Test
     void testShouldBeAbleToGetAllProducts() {
         // Mock data
-        Product product1 = new Product(1L, "Google Pixel 5", "MOBILE-GOOGLE-PIXEL-5", 12990.00, 100);
+        Product product1 =
+                new Product(1L, "Google Pixel 5", "MOBILE-GOOGLE-PIXEL-5", 12990.00, 100);
         Product product2 = new Product(2L, "Coca-Cola", "BEV-COCA-COLA", 20.00, 150);
         List<Product> productList = Arrays.asList(product1, product2);
 
@@ -45,7 +41,7 @@ class ProductServiceTest {
         // Assertions
         assertEquals(2, result.size());
         assertEquals("Google Pixel 5", result.get(0).name());
-        assertEquals("MOBILE-GOOGLE-PIXEL-5", result.get(1).sku());
+        assertEquals("BEV-COCA-COLA", result.get(1).sku());
     }
 
     @Test
@@ -66,7 +62,8 @@ class ProductServiceTest {
         Product product = new Product(1L, "Pens", "STATIONERY-PEN-BIC-BALLPOINT", 14.99, 100);
 
         // Mock repository method
-        when(productRepository.findBySku("STATIONERY-PEN-BIC-BALLPOINT")).thenReturn(Optional.of(product));
+        when(productRepository.findBySku("STATIONERY-PEN-BIC-BALLPOINT"))
+                .thenReturn(Optional.of(product));
 
         // Call service method
         ProductResponse result = productService.getBySku("STATIONERY-PEN-BIC-BALLPOINT");
