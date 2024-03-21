@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,50 +21,43 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @ApiResponses({
-        @ApiResponse(
-                responseCode = "200",
-                description = "list all products",
-                content = {
+    @ApiResponse(
+            responseCode = "200",
+            description = "list all products",
+            content = {
+                @Content(
+                        mediaType = "application/json",
+                        array =
+                                @ArraySchema(
+                                        schema = @Schema(implementation = ProductResponse.class)))
+            })
+    @ApiResponse(
+            responseCode = "500",
+            description = "internal server error",
+            content =
                     @Content(
                             mediaType = "application/json",
-                            array =
-                                    @ArraySchema(
-                                            schema =
-                                                    @Schema(
-                                                            implementation =
-                                                                    ProductResponse.class)))
-                }),
-        @ApiResponse(
-                responseCode = "500",
-                description = "internal server error",
-                content =
-                        @Content(
-                                mediaType = "application/json",
-                                schema = @Schema(implementation = NotFoundException.class)))
-    })
+                            schema = @Schema(implementation = NotFoundException.class)))
     @GetMapping("/products")
     public List<ProductResponse> getProducts() {
         return productService.getAll();
     }
 
-    @ApiResponses({
-        @ApiResponse(
-                responseCode = "200",
-                description = "get product by sku",
-                content = {
+    @ApiResponse(
+            responseCode = "200",
+            description = "get product by sku",
+            content = {
+                @Content(
+                        mediaType = "application/json",
+                        schema = @Schema(implementation = ProductResponse.class))
+            })
+    @ApiResponse(
+            responseCode = "404",
+            description = "product not found",
+            content =
                     @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = ProductResponse.class))
-                }),
-        @ApiResponse(
-                responseCode = "404",
-                description = "product not found",
-                content =
-                        @Content(
-                                mediaType = "application/json",
-                                schema = @Schema(implementation = NotFoundException.class)))
-    })
+                            schema = @Schema(implementation = NotFoundException.class)))
     @GetMapping("/products/{sku}")
     public ProductResponse getProductById(@PathVariable String sku) {
         return productService.getBySku(sku);

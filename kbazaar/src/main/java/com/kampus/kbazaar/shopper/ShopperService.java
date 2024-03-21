@@ -14,13 +14,20 @@ public class ShopperService {
     }
 
     public List<ShopperResponse> getAll() {
-        return shopperRepository.findAll().stream().map(s -> s.toResponse()).toList();
+        return shopperRepository.findAll().stream().map(Shopper::toResponse).toList();
     }
 
     public ShopperResponse getById(String id) {
         return shopperRepository
                 .findById(Integer.parseInt(id))
-                .map(s -> s.toResponse())
+                .map(Shopper::toResponse)
+                .orElseThrow(() -> new NotFoundException("Shopper not found"));
+    }
+
+    public ShopperResponse getByUsername(String username) {
+        return shopperRepository
+                .findByUsername(username)
+                .map(Shopper::toResponse)
                 .orElseThrow(() -> new NotFoundException("Shopper not found"));
     }
 }

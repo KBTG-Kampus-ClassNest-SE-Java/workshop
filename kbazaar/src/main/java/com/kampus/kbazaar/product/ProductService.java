@@ -15,7 +15,7 @@ public class ProductService {
     }
 
     public List<ProductResponse> getAll() {
-        return productRepository.findAll().stream().map(p -> p.toResponse()).toList();
+        return productRepository.findAll().stream().map(Product::toResponse).toList();
     }
 
     public ProductResponse getBySku(String sku) {

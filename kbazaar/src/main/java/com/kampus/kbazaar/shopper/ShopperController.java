@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,52 +21,45 @@ public class ShopperController {
         this.shopperService = shopperService;
     }
 
-    @ApiResponses({
-        @ApiResponse(
-                responseCode = "200",
-                description = "list all shoppers",
-                content = {
+    @ApiResponse(
+            responseCode = "200",
+            description = "list all shoppers",
+            content = {
+                @Content(
+                        mediaType = "application/json",
+                        array =
+                                @ArraySchema(
+                                        schema = @Schema(implementation = ShopperResponse.class)))
+            })
+    @ApiResponse(
+            responseCode = "500",
+            description = "internal server error",
+            content =
                     @Content(
                             mediaType = "application/json",
-                            array =
-                                    @ArraySchema(
-                                            schema =
-                                                    @Schema(
-                                                            implementation =
-                                                                    ShopperResponse.class)))
-                }),
-        @ApiResponse(
-                responseCode = "500",
-                description = "internal server error",
-                content =
-                        @Content(
-                                mediaType = "application/json",
-                                schema = @Schema(implementation = NotFoundException.class)))
-    })
+                            schema = @Schema(implementation = NotFoundException.class)))
     @GetMapping("/shopper")
     public List<ShopperResponse> getAllUsers() {
         return shopperService.getAll();
     }
 
-    @ApiResponses({
-        @ApiResponse(
-                responseCode = "200",
-                description = "get shopper by id",
-                content = {
+    @ApiResponse(
+            responseCode = "200",
+            description = "get shopper by id",
+            content = {
+                @Content(
+                        mediaType = "application/json",
+                        schema = @Schema(implementation = ShopperResponse.class))
+            })
+    @ApiResponse(
+            responseCode = "500",
+            description = "internal server error",
+            content =
                     @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = ShopperResponse.class))
-                }),
-        @ApiResponse(
-                responseCode = "500",
-                description = "internal server error",
-                content =
-                        @Content(
-                                mediaType = "application/json",
-                                schema = @Schema(implementation = NotFoundException.class)))
-    })
-    @GetMapping("/shopper/{id}")
-    public ShopperResponse getUserById(@PathVariable String id) {
-        return shopperService.getById(id);
+                            schema = @Schema(implementation = NotFoundException.class)))
+    @GetMapping("/shopper/{username}")
+    public ShopperResponse getUserByUsername(@PathVariable String username) {
+        return shopperService.getByUsername(username);
     }
 }

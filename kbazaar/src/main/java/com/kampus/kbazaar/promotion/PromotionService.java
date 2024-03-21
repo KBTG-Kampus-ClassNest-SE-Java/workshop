@@ -13,13 +13,13 @@ public class PromotionService {
     }
 
     public List<PromotionResponse> getAll() {
-        return promotionRepository.findAll().stream().map(p -> p.toResponse()).toList();
+        return promotionRepository.findAll().stream().map(Promotion::toResponse).toList();
     }
 
     public PromotionResponse getPromotionByCode(String code) {
         return promotionRepository
                 .findByCode(code)
-                .map(p -> p.toResponse())
+                .map(Promotion::toResponse)
                 .orElseThrow(() -> new NotFoundException("Promotion not found"));
     }
 }

@@ -66,4 +66,30 @@ class ShopperServiceTest {
         // Assertions
         assertThrows(NotFoundException.class, () -> shopperService.getById("1"));
     }
+
+    @Test
+    void testGetByUsername_ShouldReturnShopper() {
+        // Mock data
+        Shopper shopper = new Shopper(1L, "DataGuru", "dataguru@example.com");
+
+        // Mock repository method
+        when(shopperRepository.findByUsername("DataGuru")).thenReturn(Optional.of(shopper));
+
+        // Call service method
+        ShopperResponse result = shopperService.getByUsername("DataGuru");
+
+        // Assertions
+        assertEquals("DataGuru", result.username());
+    }
+
+    @Test
+    void testGetByUsername_ShouldThrowNotFoundException() {
+        // Mock repository method returning empty optional
+        when(shopperRepository.findByUsername("DataGuru")).thenReturn(Optional.empty());
+
+        // Assertions
+        assertThrows(NotFoundException.class, () -> shopperService.getByUsername("DataGuru"));
+    }
+
+
 }
