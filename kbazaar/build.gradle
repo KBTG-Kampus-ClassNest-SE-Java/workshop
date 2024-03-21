@@ -19,7 +19,9 @@ spotless {
 		importOrder()
 		removeUnusedImports()
 		googleJavaFormat().aosp()
+		trimTrailingWhitespace()
 		formatAnnotations()
+		endWithNewline()
 	}
 }
 
