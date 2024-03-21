@@ -90,6 +90,4 @@ class ShopperServiceTest {
         // Assertions
         assertThrows(NotFoundException.class, () -> shopperService.getByUsername("DataGuru"));
     }
-
-
 }
