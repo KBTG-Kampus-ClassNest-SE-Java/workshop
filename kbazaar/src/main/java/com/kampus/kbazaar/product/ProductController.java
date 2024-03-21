@@ -1,5 +1,6 @@
 package com.kampus.kbazaar.product;
 
+import com.kampus.kbazaar.exceptions.NotFoundException;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -41,13 +42,30 @@ public class ProductController {
                 content =
                         @Content(
                                 mediaType = "application/json",
-                                schema = @Schema(implementation = Error.class)))
+                                schema = @Schema(implementation = NotFoundException.class)))
     })
     @GetMapping("/products")
     public List<ProductResponse> getProducts() {
         return productService.getAll();
     }
 
+    @ApiResponses({
+        @ApiResponse(
+                responseCode = "200",
+                description = "get product by sku",
+                content = {
+                    @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ProductResponse.class))
+                }),
+        @ApiResponse(
+                responseCode = "404",
+                description = "product not found",
+                content =
+                        @Content(
+                                mediaType = "application/json",
+                                schema = @Schema(implementation = NotFoundException.class)))
+    })
     @GetMapping("/products/{sku}")
     public ProductResponse getProductById(@PathVariable String sku) {
         return productService.getBySku(sku);

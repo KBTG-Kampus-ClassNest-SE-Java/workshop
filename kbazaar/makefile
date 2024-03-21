@@ -22,6 +22,9 @@ sonar:
 health:
 	curl -X GET http://localhost:8080/api/v1/health
 
+swagger:
+	open http://localhost:8080/swagger-ui/index.html
+
 docker-build:
 	docker build -t kbazaar .
 
