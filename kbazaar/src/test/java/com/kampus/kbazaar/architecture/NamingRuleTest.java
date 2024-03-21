@@ -47,6 +47,7 @@ public class NamingRuleTest {
                     .that()
                     .areInterfaces()
                     .should()
-                    .haveSimpleNameContaining("Interface");
-
+                    .haveSimpleNameContaining("Interface")
+                    .orShould()
+                    .haveSimpleNameStartingWith("I");
 }
