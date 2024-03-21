@@ -38,7 +38,7 @@ public class ShopperController {
                     @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = NotFoundException.class)))
-    @GetMapping("/shopper")
+    @GetMapping("/shoppers")
     public List<ShopperResponse> getAllUsers() {
         return shopperService.getAll();
     }
@@ -58,7 +58,7 @@ public class ShopperController {
                     @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = NotFoundException.class)))
-    @GetMapping("/shopper/{username}")
+    @GetMapping("/shoppers/{username}")
     public ShopperResponse getUserByUsername(@PathVariable String username) {
         return shopperService.getByUsername(username);
     }
