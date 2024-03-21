@@ -20,11 +20,11 @@ public class DependencyRuleTest {
     static final ArchRule service_should_access_by_controller =
             classes()
                     .that()
-                    .areAnnotatedWith(Service.class)
+                    .haveSimpleNameEndingWith("Service")
                     .should()
                     .onlyBeAccessed()
                     .byClassesThat()
-                    .areAnnotatedWith(RestController.class)
+                    .haveSimpleNameEndingWith("Controller")
                     .allowEmptyShould(true);
 
     @ArchTest
