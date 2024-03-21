@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
+import com.kampus.kbazaar.exceptions.NotFoundException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -78,10 +79,7 @@ class ProductServiceTest {
         // Mock repository method returning empty optional
         when(productRepository.findBySku(anyString())).thenReturn(Optional.empty());
 
-        // Call service method
-        ProductResponse result = productService.getBySku("NonExistingSKU");
-
         // Assertions
-        assertNull(result);
+        assertThrows(NotFoundException.class, () -> productService.getBySku("NonExistingSKU"));
     }
 }

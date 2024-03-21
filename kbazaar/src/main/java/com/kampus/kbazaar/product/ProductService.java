@@ -15,16 +15,7 @@ public class ProductService {
     }
 
     public List<ProductResponse> getAll() {
-        return productRepository.findAll().stream()
-                .map(
-                        p ->
-                                new ProductResponse(
-                                        p.getId(),
-                                        p.getName(),
-                                        p.getSku(),
-                                        p.getPrice(),
-                                        p.getQuantity()))
-                .toList();
+        return productRepository.findAll().stream().map(p -> p.toResponse()).toList();
     }
 
     public ProductResponse getBySku(String sku) {
