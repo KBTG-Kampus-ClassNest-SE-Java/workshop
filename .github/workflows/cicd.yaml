@@ -74,7 +74,7 @@ jobs:
         with:
           context: ./kbazaar
           push: ${{ github.ref == 'refs/heads/main' }}
-          tags: ghcr.io/aorjoa/workshop-java:${{ env.GITHUB_SHA }}
+          tags: ghcr.io/<your-github>/workshop:${{ env.GITHUB_SHA }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
@@ -88,14 +88,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: change image tag
+      - name: config git
         run: |
           git --version
-          git config user.name "aorjoa"
+          git config user.name "robot"
           git config user.email "root@aorjoa.link"
-          sed -i -E "s/ghcr.io\/aorjoa\/workshop-java.*$/ghcr.io\/aorjoa\/workshop-java:${GITHUB_SHA}/" infra/dev/deployment.yml
-          git add infra/dev/deployment.yml
-          git commit -m "🤖 change docker image version to ${GITHUB_SHA}"
+      - name: change image tag
+        run: |
+          sed -i -E "s/ghcr.io\/<your-github>\/workshop.*$/ghcr.io\/<your-github>\/workshop:${GITHUB_SHA}/" infra/gitops/dev/deployment.yml
+          git add infra/gitops/dev/deployment.yml
+          git commit -m "[skip actions] 🤖 change docker image version to ${GITHUB_SHA}"
       - name: push changes
         uses: ad-m/github-push-action@master
         with:
