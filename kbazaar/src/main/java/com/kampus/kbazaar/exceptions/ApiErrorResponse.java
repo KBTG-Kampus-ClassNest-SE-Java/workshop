@@ -9,7 +9,8 @@ public class ApiErrorResponse {
     private String message;
     private String path;
 
-    public ApiErrorResponse(LocalDateTime timestamp, int status, String error, String message, String path) {
+    public ApiErrorResponse(
+            LocalDateTime timestamp, int status, String error, String message, String path) {
         this.timestamp = timestamp;
         this.status = status;
         this.error = error;

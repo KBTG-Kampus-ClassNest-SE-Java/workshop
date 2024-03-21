@@ -1,9 +1,8 @@
 package com.kampus.kbazaar.product;
 
+import com.kampus.kbazaar.exceptions.NotFoundException;
 import java.util.List;
 import java.util.Optional;
-
-import com.kampus.kbazaar.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
