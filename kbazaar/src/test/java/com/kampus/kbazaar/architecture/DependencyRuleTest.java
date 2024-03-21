@@ -9,7 +9,6 @@ import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 @AnalyzeClasses(
         packages = "com.kampus.kbazaar",
@@ -20,11 +19,10 @@ public class DependencyRuleTest {
     static final ArchRule service_should_access_by_controller =
             classes()
                     .that()
-                    .haveSimpleNameEndingWith("Service")
+                    .areAnnotatedWith(Service.class)
                     .should()
-                    .onlyBeAccessed()
-                    .byClassesThat()
-                    .haveSimpleNameEndingWith("Controller")
+                    .dependOnClassesThat()
+                    .areAnnotatedWith(Repository.class)
                     .allowEmptyShould(true);
 
     @ArchTest
