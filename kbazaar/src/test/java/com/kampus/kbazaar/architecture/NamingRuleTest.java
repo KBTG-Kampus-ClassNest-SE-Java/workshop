@@ -1,6 +1,7 @@
 package com.kampus.kbazaar.architecture;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
@@ -39,4 +40,13 @@ public class NamingRuleTest {
                     .should()
                     .haveSimpleNameEndingWith("Service")
                     .allowEmptyShould(true);
+
+    @ArchTest
+    static final ArchRule interfaces_naming_should_not_have_names_ending_with_the_word_interface =
+            noClasses()
+                    .that()
+                    .areInterfaces()
+                    .should()
+                    .haveSimpleNameContaining("Interface");
+
 }
