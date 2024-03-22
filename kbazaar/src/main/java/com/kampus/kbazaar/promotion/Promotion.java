@@ -3,7 +3,8 @@ package com.kampus.kbazaar.promotion;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -45,12 +46,9 @@ public class Promotion {
     @Column(name = "applicable_to", nullable = false)
     private String applicableTo;
 
-    @ElementCollection
-    @CollectionTable(
-            name = "promotion_product_skus",
-            joinColumns = @JoinColumn(name = "promotion_id"))
-    @Column(name = "product_sku")
-    private List<String> productSkus;
+    @Convert(converter = StringListConverter.class)
+    @Column(name = "product_skus")
+    private List<String> productSkus;;
 
     @Column(name = "min_quantity")
     private Integer minQuantity;

@@ -3,6 +3,7 @@ package com.kampus.kbazaar.promotion;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 public record PromotionResponse(
         Long promotionId,
