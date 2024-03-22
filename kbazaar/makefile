@@ -2,8 +2,8 @@ build: clean
 	./gradlew build
 
 setup:
-	pre-commit install --hook-type pre-commit --config .pre-commit-config.yaml
-	pre-commit install --hook-type pre-push --config .pre-push-config.yaml
+	pre-commit install --hook-type pre-commit --config ../.pre-commit-config.yaml
+	pre-commit install --hook-type pre-push --config ../.pre-push-config.yaml
 
 clean:
 	./gradlew clean
