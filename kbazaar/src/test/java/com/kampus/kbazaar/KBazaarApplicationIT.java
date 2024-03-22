@@ -5,10 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,7 +15,6 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.testcontainers.containers.PostgreSQLContainer;
 
 @SpringBootTest
@@ -55,28 +51,26 @@ class KBazaarApplicationIT {
     }
 
     @Test
+    @DisplayName("should return shopper list")
     void getShopper_shouldReturnShopperList() throws Exception {
-        MvcResult mvcResult =
-                mockMvc.perform(
-                                get("/api/v1/shoppers")
-                                        .header("Authorization", "Bearer " + jwtToken))
-                        .andExpect(status().isOk())
-                        .andExpect(jsonPath("$").isArray())
-                        .andExpect(jsonPath("$.length()").value(Matchers.greaterThan(0)))
-                        .andExpect(jsonPath("$[0].username").value("TechNinja"))
-                        .andReturn();
+        mockMvc.perform(get("/api/v1/shoppers").header("Authorization", "Bearer " + jwtToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$.length()").value(Matchers.greaterThan(0)))
+                .andExpect(jsonPath("$[0].username").value("TechNinja"))
+                .andReturn();
     }
 
     @Test
+    @DisplayName("should return shopper by username")
     void getShopperByName_shouldReturnShopper() throws Exception {
         String username = "TechNinja";
 
-        MvcResult mvcResult =
-                mockMvc.perform(
-                                get("/api/v1/shoppers/" + username)
-                                        .header("Authorization", "Bearer " + jwtToken))
-                        .andExpect(status().isOk())
-                        .andExpect(jsonPath("$.username").value(username))
-                        .andReturn();
+        mockMvc.perform(
+                        get("/api/v1/shoppers/" + username)
+                                .header("Authorization", "Bearer " + jwtToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.username").value(username))
+                .andReturn();
     }
 }

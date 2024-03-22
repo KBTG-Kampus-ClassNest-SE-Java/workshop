@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -25,7 +26,8 @@ class PromotionServiceTest {
     }
 
     @Test
-    void testGetAll() {
+    @DisplayName("should be able to get all promotions")
+    void shouldBeAbleToGetAllPromotion() {
         // Arrange
         Promotion promotion1 = new Promotion();
         Promotion promotion2 = new Promotion();
@@ -39,7 +41,8 @@ class PromotionServiceTest {
     }
 
     @Test
-    void testGetPromotionByCode_ExistingCode_ShouldReturnPromotionResponse() {
+    @DisplayName("should be able to get promotion by code")
+    void getPromotionByCode_ExistingCode_ShouldReturnPromotionResponse() {
         // Arrange
         String code = "BUY2GET1FREE";
         Promotion promotion = new Promotion();
@@ -55,7 +58,8 @@ class PromotionServiceTest {
     }
 
     @Test
-    void testGetPromotionByCode_NonExistingCode_ShouldThrowNotFoundException() {
+    @DisplayName("should throw NotFoundException when promotion code not found")
+    void getPromotionByCode_NonExistingCode_ShouldThrowNotFoundException() {
         // Arrange
         String code = "NON-EXISTING-CODE";
         when(promotionRepository.findByCode(code)).thenReturn(Optional.empty());

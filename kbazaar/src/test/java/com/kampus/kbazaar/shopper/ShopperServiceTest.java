@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -25,7 +26,8 @@ class ShopperServiceTest {
     }
 
     @Test
-    void testGetAll_ShouldReturnListOfShoppers() {
+    @DisplayName("should be able to get all shoppers")
+    void getAll_ShouldReturnListOfShoppers() {
         // Mock data
         Shopper shopper1 = new Shopper(1L, "TechNinja", "techninja@example.com");
         Shopper shopper2 = new Shopper(2L, "CodeMaster", "codemaster@example.com");
@@ -44,7 +46,8 @@ class ShopperServiceTest {
     }
 
     @Test
-    void testGetById_ShouldReturnShopper() {
+    @DisplayName("should be able to get shopper by id")
+    void getShopperById_ShouldReturnShopper() {
         // Mock data
         Shopper shopper = new Shopper(1L, "DataGuru", "dataguru@example.com");
 
@@ -59,7 +62,8 @@ class ShopperServiceTest {
     }
 
     @Test
-    void testGetById_ShouldThrowNotFoundException() {
+    @DisplayName("should throw NotFoundException when shopper not found")
+    void getShopperById_ShouldThrowNotFoundException() {
         // Mock repository method returning empty optional
         when(shopperRepository.findById(1)).thenReturn(Optional.empty());
 
@@ -68,7 +72,8 @@ class ShopperServiceTest {
     }
 
     @Test
-    void testGetByUsername_ShouldReturnShopper() {
+    @DisplayName("should be able to get shopper by username")
+    void getShopperByUsername_ShouldReturnShopper() {
         // Mock data
         Shopper shopper = new Shopper(1L, "DataGuru", "dataguru@example.com");
 
@@ -83,7 +88,8 @@ class ShopperServiceTest {
     }
 
     @Test
-    void testGetByUsername_ShouldThrowNotFoundException() {
+    @DisplayName("should throw NotFoundException when shopper not found")
+    void getByUsername_ShouldThrowNotFoundException() {
         // Mock repository method returning empty optional
         when(shopperRepository.findByUsername("DataGuru")).thenReturn(Optional.empty());
 

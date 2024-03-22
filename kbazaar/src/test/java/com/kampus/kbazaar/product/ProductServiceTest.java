@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -27,7 +28,8 @@ class ProductServiceTest {
     }
 
     @Test
-    void testShouldBeAbleToGetAllProducts() {
+    @DisplayName("should be able to get all products")
+    void shouldBeAbleToGetAllProducts() {
         // Mock data
         Product product1 =
                 new Product(
@@ -53,7 +55,8 @@ class ProductServiceTest {
     }
 
     @Test
-    void testShouldReturnEmptyListWhenNoProductFoundGetAllProducts() {
+    @DisplayName("should return empty list when no product found")
+    void shouldReturnEmptyListWhenNoProductFoundGetAllProducts() {
         // Mock repository method returning empty list
         when(productRepository.findAll()).thenReturn(Arrays.asList());
 
@@ -65,7 +68,8 @@ class ProductServiceTest {
     }
 
     @Test
-    void testShouldBeAbleToGetProductBySku() {
+    @DisplayName("should be able to get product by SKU")
+    void shouldBeAbleToGetProductBySku() {
         // Mock data
         Product product =
                 new Product(1L, "Pens", "STATIONERY-PEN-BIC-BALLPOINT", new BigDecimal(14.99), 100);
@@ -83,7 +87,8 @@ class ProductServiceTest {
     }
 
     @Test
-    void testShouldReturnNullWhenGetProductNonExistingSKU() {
+    @DisplayName("should return null when get product non-existing SKU")
+    void shouldReturnNullWhenGetProductNonExistingSKU() {
         // Mock repository method returning empty optional
         when(productRepository.findBySku(anyString())).thenReturn(Optional.empty());
 
