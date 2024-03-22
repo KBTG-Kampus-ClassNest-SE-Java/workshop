@@ -50,7 +50,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         working-directory: ./kbazaar
-        run: ./gradlew build sonar --info
+        run: make sonar
 
   build-and-push-docker-image:
     name: Build docker image and push to repositories
