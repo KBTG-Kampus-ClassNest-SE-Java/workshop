@@ -4,6 +4,6 @@ metadata:
   name: app-config
   namespace: <group-id>-dev
 data:
-  db.url: <db_dev_url>
-  db.username: <db_dev_username>
-  db.password: <db_dev_password>
+  db.url: "jdbc:postgresql://db-postgresql-sgp1-09974-do-user-856918-0.c.db.ondigitalocean.com:25060/dev-<group-id>"
+  db.username: "doadmin"
+  db.password: "AVNS_2KxS7zrsXbMV3L_4Eaj"

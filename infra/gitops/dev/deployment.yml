@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: api
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: kbazaar-api
-          image: ghcr.io/KBTG-Kampus-ClassNest-SE-Java/workshop-<group-id>:342b25a526f325f284259db8f71d8c866b2b527d
+          image: ghcr.io/kbtg-kampus-classnest-se-java/workshop-<group-id>:342b25a526f325f284259db8f71d8c866b2b527d
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -37,5 +37,5 @@ spec:
                   key: db.password
           resources:
             limits:
-              cpu: 2
+              cpu: 1
               memory: 512Mi
