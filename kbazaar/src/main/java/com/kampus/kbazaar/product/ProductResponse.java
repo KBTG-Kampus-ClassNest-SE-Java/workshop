@@ -1,3 +1,5 @@
 package com.kampus.kbazaar.product;
 
-public record ProductResponse(Long id, String name, String sku, double price, int quantity) {}
+import java.math.BigDecimal;
+
+public record ProductResponse(Long id, String name, String sku, BigDecimal price, int quantity) {}

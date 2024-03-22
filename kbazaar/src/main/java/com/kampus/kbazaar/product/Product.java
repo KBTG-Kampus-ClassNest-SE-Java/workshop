@@ -1,6 +1,11 @@
 package com.kampus.kbazaar.product;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,17 +23,22 @@ public class Product {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @NotBlank
+    @Size(max = 255)
+    @Column(name = "name", nullable = false, length = 255)
     private String name;
 
-    @Column(name = "sku")
+    @NotBlank
+    @Size(max = 255)
+    @Column(name = "sku", nullable = false, unique = true, length = 255)
     private String sku;
 
-    @Column(name = "price")
-    private double price;
+    @NotNull @Column(name = "price", nullable = false, precision = 10, scale = 2)
+    private BigDecimal price;
 
-    @Column(name = "quantity")
-    private int quantity;
+    @NotNull @PositiveOrZero
+    @Column(name = "quantity", nullable = false)
+    private Integer quantity;
 
     public ProductResponse toResponse() {
         return new ProductResponse(this.id, this.name, this.sku, this.price, this.quantity);
