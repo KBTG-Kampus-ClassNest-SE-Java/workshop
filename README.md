@@ -14,3 +14,11 @@ KBazaar - Online Shopping Application (Workshop)
 
 ## API Documentation
 - Swagger UI: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
+## Existing Features
+- List all Shopper GET /shoppers
+- Get Shopper by username GET /shoppers/{username}
+- List all Products GET /products
+- Get Product by sku GET /products/{sku}
+- List all Promotions GET /promotions
+- Get Promotion by code GET /promotions/{code}
