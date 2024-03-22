@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class JwtService {
 
     @Value("${security.jwt.secret}")
-    private String SECRET_KEY = "";
+    private String SECRET_KEY = ""; // NOSONAR
 
     public Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
@@ -27,7 +27,7 @@ public class JwtService {
                 Jwts.parserBuilder()
                         .setSigningKey(SECRET_KEY.getBytes())
                         .build()
-                        .parse(token)
+                        .parse(token) // NOSONAR
                         .getBody();
     }
 

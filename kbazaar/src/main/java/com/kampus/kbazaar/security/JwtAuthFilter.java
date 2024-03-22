@@ -35,13 +35,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
         jwtToken = authHeader.substring(7);
 
-        if (SecurityContextHolder.getContext().getAuthentication() == null) {
-            if (!jwtService.isTokenExpired(jwtToken)) {
-                UsernamePasswordAuthenticationToken authenticationToken =
-                        new UsernamePasswordAuthenticationToken(
-                                "mockUser", null, new ArrayList<>());
-                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-            }
+        if (SecurityContextHolder.getContext().getAuthentication() == null
+                && !jwtService.isTokenExpired(jwtToken)) {
+            UsernamePasswordAuthenticationToken authenticationToken =
+                    new UsernamePasswordAuthenticationToken("mockUser", null, new ArrayList<>());
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         }
 
         filterChain.doFilter(request, response);

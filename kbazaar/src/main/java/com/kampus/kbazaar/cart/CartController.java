@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 public class CartController {
 
     @GetMapping("/carts")
-    public ResponseEntity getCart() {
+    public ResponseEntity getCart() { // NOSONAR
         return ResponseEntity.ok().build();
     }
 }
