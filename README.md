@@ -159,7 +159,7 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 1. setup gitops สำหรับ development env
 
 - กด `+ New App` แล้วใส่ข้อมูลดังนี้
-- Application Name: `group-<ID>dev`
+- Application Name: `group-<ID>-dev`
 - Project Name: `default`
 - SYNC POLICY: `Automatic`
 - ✅ PRUNE RESOURCES
