@@ -62,7 +62,7 @@ dependencies {
 test {
 	testLogging.showStandardStreams = true
 	useJUnitPlatform {
-		excludeTags 'integration'
+		excludeTags 'integration-test'
 	}
 }
 
