@@ -14,8 +14,8 @@ run:
 test:
 	./gradlew clean && ./gradlew test
 
-it-test:
-	./gradlew clean && ./gradlew it-test
+test-it:
+	./gradlew clean && ./gradlew test-it
 
 format:
 	./gradlew spotlessApply
