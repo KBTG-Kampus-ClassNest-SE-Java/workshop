@@ -1,6 +1,5 @@
 package com.kampus.kbazaar;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -27,14 +26,15 @@ import org.testcontainers.containers.PostgreSQLContainer;
 @AutoConfigureMockMvc
 @Tag("integration-test")
 @TestPropertySource(locations = "classpath:application-ittest.properties")
-class KBazaarApplicationTests {
+class KBazaarApplicationIT {
 
-    @Autowired
-    private MockMvc mockMvc;
+    @Autowired private MockMvc mockMvc;
 
-    private final String jwtToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6WyJST0xFX1NIT1BQRVIiXSwic3ViIjoic2hvcHBlciIsImlhdCI6MTcxMTA4MTk1OSwiZXhwIjoxNzQyNjE3OTU5fQ.hwpc_6CL_ZENHurOaZEYg3tz9FVBgOYa7ILF063stxs";
+    private final String jwtToken =
+            "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6WyJST0xFX1NIT1BQRVIiXSwic3ViIjoic2hvcHBlciIsImlhdCI6MTcxMTA4MTk1OSwiZXhwIjoxNzQyNjE3OTU5fQ.hwpc_6CL_ZENHurOaZEYg3tz9FVBgOYa7ILF063stxs";
 
-    static PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:12-alpine");
+    static PostgreSQLContainer<?> postgresContainer =
+            new PostgreSQLContainer<>("postgres:12-alpine");
 
     @DynamicPropertySource
     static void postgresqlProperties(DynamicPropertyRegistry registry) {
@@ -56,25 +56,27 @@ class KBazaarApplicationTests {
 
     @Test
     void getShopper_shouldReturnShopperList() throws Exception {
-        MvcResult mvcResult =  mockMvc.perform(
-                get("/api/v1/shoppers").header("Authorization", "Bearer "+ jwtToken)
-                )
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$.length()").value(Matchers.greaterThan(0)))
-                .andExpect(jsonPath("$[0].username").value("TechNinja"))
-                .andReturn();
+        MvcResult mvcResult =
+                mockMvc.perform(
+                                get("/api/v1/shoppers")
+                                        .header("Authorization", "Bearer " + jwtToken))
+                        .andExpect(status().isOk())
+                        .andExpect(jsonPath("$").isArray())
+                        .andExpect(jsonPath("$.length()").value(Matchers.greaterThan(0)))
+                        .andExpect(jsonPath("$[0].username").value("TechNinja"))
+                        .andReturn();
     }
 
     @Test
     void getShopperByName_shouldReturnShopper() throws Exception {
         String username = "TechNinja";
 
-        MvcResult mvcResult =  mockMvc.perform(
-                        get("/api/v1/shoppers/" + username).header("Authorization", "Bearer "+ jwtToken)
-                )
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.username").value(username))
-                .andReturn();
+        MvcResult mvcResult =
+                mockMvc.perform(
+                                get("/api/v1/shoppers/" + username)
+                                        .header("Authorization", "Bearer " + jwtToken))
+                        .andExpect(status().isOk())
+                        .andExpect(jsonPath("$.username").value(username))
+                        .andReturn();
     }
 }
