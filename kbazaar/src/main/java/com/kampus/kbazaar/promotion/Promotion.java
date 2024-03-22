@@ -66,7 +66,13 @@ public class Promotion {
                 this.discountAmount,
                 this.maxDiscountAmount,
                 this.applicableTo,
-                Arrays.stream(this.productSkus.split(",")).filter(s -> !s.isEmpty()).toList(),
+                Optional.ofNullable(this.productSkus)
+                        .map(
+                                s ->
+                                        Arrays.stream(s.split(","))
+                                                .filter(str -> !str.isEmpty())
+                                                .toList())
+                        .orElse(Collections.emptyList()),
                 this.minQuantity,
                 this.freeQuantity);
     }

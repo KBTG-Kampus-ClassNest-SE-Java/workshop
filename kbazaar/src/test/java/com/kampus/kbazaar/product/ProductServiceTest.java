@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import com.kampus.kbazaar.exceptions.NotFoundException;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -29,8 +30,14 @@ class ProductServiceTest {
     void testShouldBeAbleToGetAllProducts() {
         // Mock data
         Product product1 =
-                new Product(1L, "Google Pixel 5", "MOBILE-GOOGLE-PIXEL-5", 12990.00, 100);
-        Product product2 = new Product(2L, "Coca-Cola", "BEV-COCA-COLA", 20.00, 150);
+                new Product(
+                        1L,
+                        "Google Pixel 5",
+                        "MOBILE-GOOGLE-PIXEL-5",
+                        new BigDecimal(12990.75),
+                        100);
+        Product product2 =
+                new Product(2L, "Coca-Cola", "BEV-COCA-COLA", new BigDecimal(20.75), 150);
         List<Product> productList = Arrays.asList(product1, product2);
 
         // Mock repository method
@@ -60,7 +67,8 @@ class ProductServiceTest {
     @Test
     void testShouldBeAbleToGetProductBySku() {
         // Mock data
-        Product product = new Product(1L, "Pens", "STATIONERY-PEN-BIC-BALLPOINT", 14.99, 100);
+        Product product =
+                new Product(1L, "Pens", "STATIONERY-PEN-BIC-BALLPOINT", new BigDecimal(14.99), 100);
 
         // Mock repository method
         when(productRepository.findBySku("STATIONERY-PEN-BIC-BALLPOINT"))
@@ -71,7 +79,7 @@ class ProductServiceTest {
 
         // Assertions
         assertEquals("Pens", result.name());
-        assertEquals(14.99, result.price());
+        assertEquals(new BigDecimal(14.99), result.price());
     }
 
     @Test

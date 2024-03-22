@@ -59,6 +59,7 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	include '**/*Test.java'
 }
 
 sonar {
