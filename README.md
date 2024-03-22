@@ -120,6 +120,11 @@ kube-public       Active   3d
 kube-node-lease   Active   3d
 ```
 
+เพิ่ม ingress controller
+```console
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.0/deploy/static/provider/cloud/deploy.yaml
+```
+
 ### 💺 ArgoCD
 
 1.รันคำสั่งสร้าง Namespace
