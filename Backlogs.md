@@ -57,6 +57,23 @@ As a customer, I want to view details of a specific product by its ID, so that I
 - any error should be handled and return 404 Not Found with an appropriate error message if the product doesn't exist.
 		for example: {"message": "Product not found"} with 404 status code
 
+
+# Story 2.1:
+
+As a Product Manager, I want to have pagination for the products, so that I can manage the products more efficiently.
+
+## Acceptance Criteria:
+- The API retrieves a list of all products with pagination.
+- Each product object includes essential details like id, name, description, price, sku and stock quantity.
+- The API supports pagination with query parameters like page and limit.
+
+## Technical Requirements:
+- REST API Endpoint: GET /products
+- Query Parameters: page, limit
+- Response: 200 OK with a list of products in JSON format
+- Each product object should include id, name, description, price, sku and stock quantity.
+- The API should support pagination based on the query parameters.
+
 # Story 3:
 
 As a customer, I want to add a specific product to my cart, so that I can purchase the product later.
