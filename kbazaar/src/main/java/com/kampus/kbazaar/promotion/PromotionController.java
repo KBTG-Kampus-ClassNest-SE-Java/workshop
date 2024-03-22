@@ -6,7 +6,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import java.util.List;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1")
-@ConditionalOnProperty(
-        value = "feature.toggle.promotion-api",
-        havingValue = "true",
-        matchIfMissing = true)
 public class PromotionController {
     private PromotionService promotionService;
+
+    @Value("${feature.toggle.promotion-api:true}")
+    private boolean promotionApi;
 
     public PromotionController(PromotionService promotionService) {
         this.promotionService = promotionService;
@@ -43,8 +43,11 @@ public class PromotionController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = NotFoundException.class)))
     @GetMapping("/promotions")
-    public List<PromotionResponse> getAllPromotions() {
-        return promotionService.getAll();
+    public ResponseEntity<List<PromotionResponse>> getAllPromotions() {
+        if (!promotionApi) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(promotionService.getAll());
     }
 
     @ApiResponse(
