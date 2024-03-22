@@ -42,10 +42,10 @@ As a Shopper, I want to view a list of available products, so that I can browse 
 
 # Story 2:
 
-As a Shopper, I want to view details of a specific product by its ID, so that I can get more information about the product before making a purchase.
+As a Shopper, I want to view details of a specific product by its SKU, so that I can get more information about the product before making a purchase.
 
 ## Acceptance Criteria:
-- The API retrieves details of a specific product based on the provided ID.
+- The API retrieves details of a specific product based on the provided SKU.
 - Returns a 200 OK with the product details if found.
 - Returns a 404 Not Found with an appropriate error message if the product doesn't exist.
 
