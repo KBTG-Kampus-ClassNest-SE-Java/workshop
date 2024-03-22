@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api
-  namespace: dev-workshop
+  namespace: <group-id>-dev
 spec:
   selector:
     matchLabels:
@@ -15,16 +15,26 @@ spec:
     spec:
       containers:
         - name: kbazaar-api
-          image: ghcr.io/<your-github>/workshop:342b25a526f325f284259db8f71d8c866b2b527d
+          image: ghcr.io/KBTG-Kampus-ClassNest-SE-Java/workshop-<group-id>:342b25a526f325f284259db8f71d8c866b2b527d
           imagePullPolicy: Always
           ports:
-            - containerPort: 9090
+            - containerPort: 8080
           env:
-            - name: SERVER_PORT
+            - name: SPRING_DATASOURCE_URL
               valueFrom:
                 configMapKeyRef:
                   name: app-config
-                  key: api.service.port
+                  key: db.url
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: db.username
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: db.password
           resources:
             limits:
               cpu: 2

@@ -89,8 +89,8 @@ Do you want to perform these actions?
 
 ### STEP3.2: 🗂️ แก้ไข DATABASE_URL ให้เป็น url ของทีม
 
-1. find and replace `<DB_CONNECTION_DEV>` ให้เป็น database url DEV connection ของทีม
-1. find and replace `<DB_CONNECTION_PRD>` ให้เป็น database url PRODUCTION connection ของทีม
+1. find and replace `<db_dev_url>`, `<db_dev_username>`, `<db_dev_password>` ให้เป็น database url DEV connection ของทีม
+1. find and replace `<db_prod_url>`, `<db_prod_username>`, `<db_prod_password>` ให้เป็น database url PRODUCTION connection ของทีม
 
 ### 🛟 Kubernetes
 

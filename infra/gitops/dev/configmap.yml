@@ -2,6 +2,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: app-config
-  namespace: dev-workshop
+  namespace: <group-id>-dev
 data:
-  api.service.port: "9090"
+  db.url: <db_dev_url>
+  db.username: <db_dev_username>
+  db.password: <db_dev_password>
