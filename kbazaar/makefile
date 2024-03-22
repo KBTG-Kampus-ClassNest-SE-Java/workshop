@@ -12,7 +12,10 @@ run:
 	./gradlew bootRun
 
 test:
-	./gradlew test
+	./gradlew clean && ./gradlew test
+
+it-test:
+	./gradlew clean && ./gradlew it-test
 
 format:
 	./gradlew spotlessApply
