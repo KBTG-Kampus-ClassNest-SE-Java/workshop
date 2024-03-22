@@ -17,6 +17,9 @@ test:
 test-it:
 	./gradlew clean && ./gradlew test-it
 
+test-cover:
+	./gradlew clean && ./gradlew test jacocoTestReport
+
 format:
 	./gradlew spotlessApply
 
