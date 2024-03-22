@@ -46,9 +46,8 @@ public class Promotion {
     @Column(name = "applicable_to", nullable = false)
     private String applicableTo;
 
-    @Convert(converter = StringListConverter.class)
     @Column(name = "product_skus")
-    private List<String> productSkus;;
+    private String productSkus;;
 
     @Column(name = "min_quantity")
     private Integer minQuantity;
@@ -68,7 +67,7 @@ public class Promotion {
                 this.discountAmount,
                 this.maxDiscountAmount,
                 this.applicableTo,
-                this.productSkus,
+                Arrays.stream(this.productSkus.split(",")).filter(s -> !s.isEmpty()).toList(),
                 this.minQuantity,
                 this.freeQuantity);
     }

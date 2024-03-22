@@ -11,7 +11,7 @@ INSERT INTO promotion (code, name, description, start_date, end_date, discount_t
 VALUES ('BUY1GET1FREE', 'Buy 1 Get 1 Free', 'Buy one product and get one free.', '2024-03-25', '2024-04-25', 'buy1_get1', 1, 1,'ENTIRE_CART') ON CONFLICT DO NOTHING;
 
 INSERT INTO promotion (code, name, description, start_date, end_date, discount_type, min_quantity, free_quantity, applicable_to, product_skus)
-VALUES ('BUY2GET1FREE', 'Buy 2 Get 1 Free', 'Buy two products and get one free.', '2024-03-25', '2024-04-25', 'buy2_get1', 2, 1, 'SPECIFIC_PRODUCTS', '{"BEV-FANTA", "BEV-RED-BULL", "BEV-7UP" }') ON CONFLICT DO NOTHING;
+VALUES ('BUY2GET1FREE', 'Buy 2 Get 1 Free', 'Buy two products and get one free.', '2024-03-25', '2024-04-25', 'buy2_get1', 2, 1, 'SPECIFIC_PRODUCTS', 'BEV-FANTA,BEV-RED-BULL,BEV-7UP') ON CONFLICT DO NOTHING;
 
 INSERT INTO promotion (code, name, description, start_date, end_date, discount_type, discount_amount, applicable_to, product_skus)
-VALUES ('SPECIFICPRODUCT30OFF', '30% Discount on Specific Products', 'Get 30% off on specific products.', '2024-03-25', '2024-04-25', 'PERCENTAGE', 30.00, 'SPECIFIC_PRODUCTS', '{"MOBILE-APPLE-IPHONE-12-PRO", "STATIONERY-NOTEBOOK-MOLESKINE"}') ON CONFLICT DO NOTHING;
+VALUES ('SPECIFICPRODUCT30OFF', '30% Discount on Specific Products', 'Get 30% off on specific products.', '2024-03-25', '2024-04-25', 'PERCENTAGE', 30.00, 'SPECIFIC_PRODUCTS', 'MOBILE-APPLE-IPHONE-12-PRO,STATIONERY-NOTEBOOK-MOLESKINE') ON CONFLICT DO NOTHING;
