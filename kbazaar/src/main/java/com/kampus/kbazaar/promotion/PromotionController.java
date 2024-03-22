@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class PromotionController {
     private PromotionService promotionService;
 
-    @Value("${feature.toggle.promotion-api:true}")
-    private boolean promotionApi;
+    @Value("${enabled.feature.promotion.list.api:true}")
+    private boolean enablePromotionListApi;
 
     public PromotionController(PromotionService promotionService) {
         this.promotionService = promotionService;
@@ -44,10 +44,11 @@ public class PromotionController {
                             schema = @Schema(implementation = NotFoundException.class)))
     @GetMapping("/promotions")
     public ResponseEntity<List<PromotionResponse>> getAllPromotions() {
-        if (!promotionApi) {
-            return ResponseEntity.notFound().build();
+        if (enablePromotionListApi) {
+            return ResponseEntity.ok(promotionService.getAll());
         }
-        return ResponseEntity.ok(promotionService.getAll());
+
+        return ResponseEntity.notFound().build();
     }
 
     @ApiResponse(
