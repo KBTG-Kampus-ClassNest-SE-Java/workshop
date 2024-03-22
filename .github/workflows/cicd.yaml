@@ -43,7 +43,7 @@ jobs:
 
       - name: Run test
         working-directory: ./kbazaar
-        run: ./gradlew test
+        run: make test
 
       - name: Build and analyze
         env:

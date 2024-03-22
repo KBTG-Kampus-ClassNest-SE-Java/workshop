@@ -24,7 +24,7 @@ format-check:
 	./gradlew spotlessCheck
 
 sonar:
-	./gradlew sonar
+	./gradlew build sonar --info
 
 health:
 	curl -X GET http://localhost:8080/api/v1/health
