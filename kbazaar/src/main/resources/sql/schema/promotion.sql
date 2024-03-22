@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS promotion (
 	promotion_id SERIAL PRIMARY KEY,
-	code VARCHAR(255) NOT NULL,
+	code VARCHAR(255) NOT NULL UNIQUE,
 	name VARCHAR(255) NOT NULL,
 	description TEXT,
 	start_date TIMESTAMP NOT NULL,
