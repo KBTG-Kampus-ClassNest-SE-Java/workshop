@@ -2,11 +2,10 @@ package com.kampus.kbazaar.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
 import java.util.Date;
 import java.util.function.Function;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 @Component
 public class JwtService {
@@ -22,8 +21,14 @@ public class JwtService {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
+
     private Claims extractAllClaims(String token) {
-        return (Claims) Jwts.parserBuilder().setSigningKey(SECRET_KEY.getBytes()).build().parse(token).getBody();
+        return (Claims)
+                Jwts.parserBuilder()
+                        .setSigningKey(SECRET_KEY.getBytes())
+                        .build()
+                        .parse(token)
+                        .getBody();
     }
 
     public Boolean isTokenExpired(String token) {

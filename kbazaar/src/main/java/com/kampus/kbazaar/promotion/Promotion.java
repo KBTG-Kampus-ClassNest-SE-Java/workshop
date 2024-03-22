@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -47,7 +46,7 @@ public class Promotion {
     private String applicableTo;
 
     @Column(name = "product_skus")
-    private String productSkus;;
+    private String productSkus;
 
     @Column(name = "min_quantity")
     private Integer minQuantity;
