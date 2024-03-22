@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api
-  namespace: <group-id>-dev
+  namespace: <group-id>-prod
 spec:
   selector:
     matchLabels:

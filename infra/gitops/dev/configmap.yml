@@ -7,3 +7,5 @@ data:
   db.url: "jdbc:postgresql://db-postgresql-sgp1-09974-do-user-856918-0.c.db.ondigitalocean.com:25060/dev-<group-id>"
   db.username: "doadmin"
   db.password: "AVNS_2KxS7zrsXbMV3L_4Eaj"
+  enabled.feature.promotion.list.api: "true"
+  
