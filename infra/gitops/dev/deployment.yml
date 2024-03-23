@@ -42,5 +42,5 @@ spec:
                   key: enabled.feature.promotion.list.api
           resources:
             limits:
-              cpu: 1
+              cpu: "1"
               memory: 512Mi
