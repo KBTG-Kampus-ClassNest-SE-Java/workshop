@@ -40,6 +40,7 @@ public class ProductController {
                             schema = @Schema(implementation = NotFoundException.class)))
     @GetMapping("/products")
     public List<ProductResponse> getProducts() {
+        //        add TODO:
         return productService.getAll();
     }
 
