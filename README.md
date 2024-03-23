@@ -15,6 +15,21 @@ KBazaar - Online Shopping Application (Workshop)
 ## API Documentation
 - Swagger UI: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
+## Example for .env
+
+```markdown
+export SONAR_HOST_URL={REPLACE_ME}
+export SONAR_TOKEN=${SONAR_TOKEN}
+
+# spring config
+export SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/postgres
+export SPRING_DATASOURCE_USERNAME=postgres
+export SPRING_DATASOURCE_PASSWORD=postgres
+export SECURITY_JWT_SECRET={REPLACE_ME}
+
+export ENABLED_FEATURE_PROMOTION_LIST_API=false
+```
+
 
 ## Existing Features
 - List all Shopper GET /shoppers
