@@ -79,7 +79,7 @@ As a Product Manager, I want to have pagination for the products, so that I can 
 As a Shopper, I want to add a specific product to my cart, so that I can purchase the product later.
 
 ## Acceptance Criteria:
-- The API adds the specified product (identified by its ID) to the user's cart with the provided quantity.
+- The API adds the specified product (identified by its SKU) to the user's cart with the provided quantity.
 - Returns a 201 Created with a success message if the item is added successfully.
 - Returns a 400 Bad Request with an appropriate error message if the request body is invalid (e.g., missing fields or invalid data format).
 
@@ -269,6 +269,24 @@ As a Shopper, I want to place an order with the items in my cart, so that I can 
 - any error should be handled and return 400 Bad Request with an appropriate error message if the cart is empty or the stock quantity is insufficient.
 		for example: {"message": "Cart is empty"} with 400 status code
 
+# Story 16:
+
+As a Product Owner I want to be able to charge shopping fee for the order in next 3 months, so that I can cover the delivery cost.
+
+## Acceptance Criteria:
+- The API charges a shopping fee of 25 Baht for the order in the next 3 months.
+- I want to show the shopping fee in the cart details and order details.
+- Returns a 200 OK with the updated order details if the shopping fee is applied successfully.
+
+## Technical Requirements:
+- REST API Endpoint: POST /carts/{username}/items
+- Path Variable: {username} - Represents the unique user identifier.
+- Request Body: Content Type: application/json
+- Request Body Example: {"productSku": 1, "quantity": 2}
+- Response: 200 OK with the updated order details if the shopping fee is applied successfully
+
+
+
 <!-- Hints: collapse -->
 ## Some hints to help the participants get started with the workshop.
 <details>
@@ -382,8 +400,10 @@ As a Shopper, I want to place an order with the items in my cart, so that I can 
 			"price": 100.00,
 			"discount": 10.00,
 			"finalPrice": 90.00
+			"promotions": ["FIXEDAMOUNT10"]
 		}
 	],
+	"promotions": ["FIXED_A_MOUNT_10"]
 	"totalPrice": 90.00,
 	"totalDiscount": 10.00
 }

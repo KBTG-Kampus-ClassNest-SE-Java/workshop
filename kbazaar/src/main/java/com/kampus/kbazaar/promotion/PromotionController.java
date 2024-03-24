@@ -21,6 +21,9 @@ public class PromotionController {
     @Value("${enabled.feature.promotion.list.api:true}")
     private boolean enablePromotionListApi;
 
+    @Value("${enabled.shipping.fee:false}")
+    private boolean enableShippingFee;
+
     public PromotionController(PromotionService promotionService) {
         this.promotionService = promotionService;
     }
