@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS promotion (
 	discount_amount DECIMAL(10, 2),
 	max_discount_amount DECIMAL(10, 2),
 	applicable_to VARCHAR(50) NOT NULL,
-	product_skus VARCHAR(255) NOT NULL DEFAULT '',
+	product_skus VARCHAR(255) NOT NULL DEFAULT '', -- comma-separated list of product skus
 	min_quantity INT,
 	free_quantity INT
 );

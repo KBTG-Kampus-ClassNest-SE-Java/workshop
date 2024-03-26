@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
+import jdk.jfr.Description;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -45,6 +46,7 @@ public class Promotion {
     @Column(name = "applicable_to", nullable = false)
     private String applicableTo;
 
+    @Description("separated by comma")
     @Column(name = "product_skus")
     private String productSkus;
 
