@@ -1,130 +1,130 @@
 plugins {
-	id 'java'
-	id 'jacoco'
-	id 'org.springframework.boot' version '3.2.2'
-	id 'io.spring.dependency-management' version '1.1.4'
-	id 'org.sonarqube' version '4.4.1.3373'
-	id 'com.diffplug.spotless' version '6.22.0'
-	id "com.adarshr.test-logger" version "4.0.0"
+    id 'java'
+    id 'jacoco'
+    id 'org.springframework.boot' version '3.2.2'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.sonarqube' version '4.4.1.3373'
+    id 'com.diffplug.spotless' version '6.22.0'
+    id "com.adarshr.test-logger" version "4.0.0"
 }
 
 jacocoTestReport {
-	reports {
-		xml.required = true
-		html.required = true
-	}
+    reports {
+        xml.required = true
+        html.required = true
+    }
 }
 
 spotless {
-	java {
-		importOrder()
-		removeUnusedImports()
-		googleJavaFormat().aosp()
-		trimTrailingWhitespace()
-		formatAnnotations()
-		endWithNewline()
-	}
+    java {
+        importOrder()
+        removeUnusedImports()
+        googleJavaFormat().aosp()
+        trimTrailingWhitespace()
+        formatAnnotations()
+        endWithNewline()
+    }
 }
 
 group = 'com.kampus'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '17'
+    sourceCompatibility = '17'
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	compileOnly 'org.projectlombok:lombok:1.18.30'
-	annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
 
-	 implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	 implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.projectlombok:lombok:1.18.22'
     implementation 'org.postgresql:postgresql:42.7.3'
 
-	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
-	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 
-	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.4.0'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.4.0'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	// testImplementation 'org.springframework.security:spring-security-test'
-	testImplementation 'com.tngtech.archunit:archunit-junit5:1.2.1'
-	testImplementation 'org.testcontainers:postgresql:1.15.3'
+    // testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'com.tngtech.archunit:archunit-junit5:1.2.1'
+    testImplementation 'org.testcontainers:postgresql:1.15.3'
 }
 
 test {
-	testLogging.showStandardStreams = true
-	useJUnitPlatform {
-		excludeTags 'integration-test'
-	}
-	finalizedBy jacocoTestReport
+    testLogging.showStandardStreams = true
+    useJUnitPlatform {
+        excludeTags 'integration-test'
+    }
+    finalizedBy jacocoTestReport
 }
 
 task("test-it", type: Test) {
-	useJUnitPlatform {
-		includeTags 'integration-test'
-	}
+    useJUnitPlatform {
+        includeTags 'integration-test'
+    }
 }
 
 sonar {
-  properties {
-	property "sonar.gradle.skipCompile", "true"
-	property "sonar.projectKey", "<group-id>"
-	property "sonar.token", System.getenv("SONAR_TOKEN")
-	property "sonar.host.url", System.getenv("SONAR_HOST_URL")
-  }
+    properties {
+        property "sonar.gradle.skipCompile", "true"
+        property "sonar.projectKey", "<group-id>"
+        property "sonar.token", System.getenv("SONAR_TOKEN")
+        property "sonar.host.url", System.getenv("SONAR_HOST_URL")
+    }
 }
 
 testlogger {
-	// pick a theme - mocha, standard, plain, mocha-parallel, standard-parallel or plain-parallel
-	theme 'mocha'
+    // pick a theme - mocha, standard, plain, mocha-parallel, standard-parallel or plain-parallel
+    theme 'mocha'
 
-	// set to false to disable detailed failure logs
-	showExceptions true
+    // set to false to disable detailed failure logs
+    showExceptions true
 
-	// set to false to hide stack traces
-	showStackTraces true
+    // set to false to hide stack traces
+    showStackTraces true
 
-	// set to true to remove any filtering applied to stack traces
-	showFullStackTraces true
+    // set to true to remove any filtering applied to stack traces
+    showFullStackTraces true
 
-	// set to false to hide exception causes
-	showCauses true
+    // set to false to hide exception causes
+    showCauses true
 
-	// set threshold in milliseconds to highlight slow tests
-	slowThreshold 2000
+    // set threshold in milliseconds to highlight slow tests
+    slowThreshold 2000
 
-	// displays a breakdown of passes, failures and skips along with total duration
-	showSummary true
+    // displays a breakdown of passes, failures and skips along with total duration
+    showSummary true
 
-	// set to true to see simple class names
-	showSimpleNames false
+    // set to true to see simple class names
+    showSimpleNames false
 
-	// set to false to hide passed tests
-	showPassed true
+    // set to false to hide passed tests
+    showPassed true
 
-	// set to false to hide skipped tests
-	showSkipped true
+    // set to false to hide skipped tests
+    showSkipped true
 
-	// set to false to hide failed tests
-	showFailed true
+    // set to false to hide failed tests
+    showFailed true
 
-	// enable to see standard out and error streams inline with the test results
-	showStandardStreams false
+    // enable to see standard out and error streams inline with the test results
+    showStandardStreams false
 
-	// set to false to hide passed standard out and error streams
-	showPassedStandardStreams true
+    // set to false to hide passed standard out and error streams
+    showPassedStandardStreams true
 
-	// set to false to hide skipped standard out and error streams
-	showSkippedStandardStreams true
+    // set to false to hide skipped standard out and error streams
+    showSkippedStandardStreams true
 
-	// set to false to hide failed standard out and error streams
-	showFailedStandardStreams true
+    // set to false to hide failed standard out and error streams
+    showFailedStandardStreams true
 }
