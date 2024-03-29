@@ -399,11 +399,11 @@ As a Product Owner I want to be able to charge shopping fee for the order in nex
 			"quantity": 1,
 			"price": 100.00,
 			"discount": 10.00,
-			"finalPrice": 90.00
+			"finalPrice": 90.00,
 			"promotions": ["FIXEDAMOUNT10"]
 		}
 	],
-	"promotions": ["FIXED_A_MOUNT_10"]
+	"promotions": ["FIXED_A_MOUNT_10"],
 	"totalPrice": 90.00,
 	"totalDiscount": 10.00
 }
@@ -433,7 +433,7 @@ As a Product Owner I want to be able to charge shopping fee for the order in nex
 }
 ```
 
-6. Paggiante Products (GET /products):
+6. Paginate Products (GET /products):
 
 - Description: Retrieves a list of all products with pagination.
 - https://docs.gitlab.com/ee/api/rest/index.html#offset-based-pagination
