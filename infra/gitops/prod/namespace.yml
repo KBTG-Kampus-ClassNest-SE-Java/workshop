@@ -1,4 +1,4 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: <group-id>-prod
+  name: group-2-prod

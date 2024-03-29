@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api
-  namespace: <group-id>-dev
+  namespace: group-2-dev
 spec:
   selector:
     matchLabels:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: kbazaar-api
-          image: ghcr.io/kbtg-kampus-classnest-se-java/workshop-<group-id>:342b25a526f325f284259db8f71d8c866b2b527d
+          image: ghcr.io/kbtg-kampus-classnest-se-java/workshop-group-2:342b25a526f325f284259db8f71d8c866b2b527d
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

@@ -40,7 +40,7 @@ jobs:
         
       - name: change image tag
         run: |
-         sed -i -E "s/ghcr.io\/kbtg-kampus-classnest-se-java\/workshop-<group-id>.*$/ghcr.io\/kbtg-kampus-classnest-se-java\/workshop-<group-id>:${GITHUB_SHA}/" infra/gitops/prod/deployment.yml
+         sed -i -E "s/ghcr.io\/kbtg-kampus-classnest-se-java\/workshop-group-2.*$/ghcr.io\/kbtg-kampus-classnest-se-java\/workshop-group-2:${GITHUB_SHA}/" infra/gitops/prod/deployment.yml
           git add infra/gitops/prod/deployment.yml
           git commit -m "[skip actions] 🤖 change prd docker image version to ${{ inputs.deploy-tag }}"
           git pull --rebase
