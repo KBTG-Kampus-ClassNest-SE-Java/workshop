@@ -5,7 +5,7 @@ metadata:
   namespace: group-2-dev
 data:
   db.url: "jdbc:postgresql://ec2-13-229-211-253.ap-southeast-1.compute.amazonaws.com:5432/dev-group-2"
-  db.username: "doadmin"
-  db.password: "AVNS_2KxS7zrsXbMV3L_4Eaj"
+  db.username: "postgres"
+  db.password: "YGSQOnBlYd+6"
   enabled.feature.promotion.list.api: "true"
   enabled.shipping.fee: "true"
