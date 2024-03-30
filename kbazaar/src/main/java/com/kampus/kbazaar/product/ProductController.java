@@ -8,6 +8,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import java.util.List;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
+import lombok.val;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -38,8 +44,17 @@ public class ProductController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = NotFoundException.class)))
     @GetMapping("/products")
-    public PaginationResponse<ProductResponse> getProducts(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "50") int limit) {
-        return productService.getAll(page, limit);
+    public ResponseEntity<List<ProductResponse>> getProducts(@Valid @Positive @RequestParam(defaultValue = "1") int page, @Valid @Positive @RequestParam(defaultValue = "50") int limit) {
+        val headers = new HttpHeaders();
+
+        val res =  productService.getAll(page, limit);
+
+        res.appendPageInHeader(headers);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .headers(headers)
+                .body(res.getData());
     }
 
     @ApiResponse(

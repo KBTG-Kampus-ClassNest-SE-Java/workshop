@@ -1,6 +1,7 @@
 package com.kampus.kbazaar.model;
 
 import lombok.Data;
+import org.springframework.http.HttpHeaders;
 
 import java.util.List;
 
@@ -16,5 +17,10 @@ public class PaginationResponse<T> {
         this.data = data;
         this.totalPages = totalPages;
         this.totalElements = totalElements;
+    }
+
+    public void appendPageInHeader(HttpHeaders headers) {
+        headers.add("x-total-pages", String.valueOf(totalPages));
+        headers.add("x-total", String.valueOf(totalElements));
     }
 }
