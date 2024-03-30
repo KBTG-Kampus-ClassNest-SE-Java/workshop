@@ -490,12 +490,12 @@ CREATE TABLE IF NOT EXISTS cart_item (
 Diagram:
 ```mermaid
 sequenceDiagram
-    participant App as Mobile App
+    participant Shopper as Mobile Shopper
     participant BFF as BFF API (Backend-for-Frontend)
     participant API as REST API (SpringBoot)
     participant DB as Postgres SQL Database
 
-    App->>BFF: POST /carts/{username}/items with product sku
+    Shopper->>BFF: POST /carts/{username}/items with product sku
     BFF->>API: GET /product/{sku}
     API-->>BFF: Product Information
     BFF->>API: POST /carts/{username}/items with product info
@@ -507,7 +507,7 @@ sequenceDiagram
     API-->>API: compute cart grandTotal price
     API-->>API: build Cart Response
     API-->>BFF: Cart Response details
-    BFF-->>App: Cart Response details
+    BFF-->>Shopper: Cart Response details
 ```
 
 
@@ -568,7 +568,9 @@ sequenceDiagram
     participant DB as Postgres SQL Database
 
     Shopper->>BFF: POST /carts/{username}/promotions with promotion code
-    BFF->>API: POST /carts/{username}/promotions with promotion code
+    BFF->>API: GET /promotions/{code}
+    API-->>BFF: Promotion Information
+    BFF->>API: POST /carts/{username}/promotions with Promotion info
     API-->>DB: Query cart and cart items
     DB-->>API: Cart and cart items
     API-->>API: Apply promotion code discount to specific product in cart
@@ -637,7 +639,9 @@ sequenceDiagram
     participant DB as Postgres SQL Database
 
     Shopper->>BFF: POST /carts/{username}/promotions with promotion code
-    BFF->>API: POST /carts/{username}/promotions with promotion code
+    BFF->>API: GET /promotions/{code}
+    API-->>BFF: Promotion Information
+    BFF->>API: POST /carts/{username}/promotions with Promotion info
     API-->>DB: Query cart table
     DB-->>API: Cart Data
     API-->>API: Apply promotion code discount to cart
