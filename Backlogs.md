@@ -40,6 +40,7 @@ As a Shopper, I want to view a list of available products, so that I can browse 
 - any error should be handled and return 404 Not Found with an appropriate error message if the product doesn't exist.
 		for example: {"message": "Product not found"} with 404 status code
 
+
 # Story 2:
 
 As a Shopper, I want to view details of a specific product by its SKU, so that I can get more information about the product before making a purchase.
@@ -73,8 +74,22 @@ As a Product Manager, I want to have pagination for the products, so that I can 
 - Each product object should include id, name, description, price, sku and stock quantity.
 - The API should support pagination based on the query parameters.
 
-
 # Story 4:
+
+As an Admin, I want to see list of carts, so that I can manage the carts more efficiently.
+
+## Acceptance Criteria:
+- The API retrieves a list of all carts
+- Each cart object includes essential details like username, items, total price, total discount and total amount.
+
+## Technical Requirements:
+- REST API Endpoint: GET /carts
+- Response: 200 OK with a list of carts in JSON format
+- Each cart object should include username, items, total price, total discount and total amount.
+- any error should be handled and return 404 Not Found with an appropriate error message if the cart doesn't exist.
+		for example: {"message": "Cart not found"} with 404 status code
+
+# Story 5:
 
 As a Shopper, I want to add a specific product to my cart, so that I can purchase the product later.
 
@@ -93,28 +108,24 @@ As a Shopper, I want to add a specific product to my cart, so that I can purchas
 - any error should be handled and return 400 Bad Request with an appropriate error message if the request body is invalid.
 		for example: {"message": "Invalid request body"} with 400 status code
 
+## Assumption:
+	- BFF (Backend for frontend) will handle the stock quantity of the product as well as product information.
+	- User will be have a cart when they create a user account.
 
-# Story 5:
-
-As a Shopper, I want to apply a promotion code discount to *my cart*, so that I can get a discount on my purchase.
-
-## Acceptance Criteria:
-- The API applies the promotion code `FIXEDAMOUNT10` discount to the shopper cart.
-- Returns a 200 OK with the updated cart details if the promotion code is applied successfully.
-
-## Technical Requirements:
-- REST API Endpoint: POST /carts/{username}/promotions
-- Path Variable: {username} - Represents the unique user identifier.
-- Request Body: Content Type: application/json
-- Request Body Example: {"code": "FIXEDAMOUNT10"}
+## Out of Scope:
+- The API does not validate the stock quantity of the product.
+- The API does not handle the case where the product does not exist.
+- The API does not handle the case where the user does not exist.
+- The API does not handle the removal of a product from the cart.
 
 
 # Story 6:
 
-As a Shopper, I want to apply a promotion code discount to *specific product* in my cart, so that I can get a discount on my purchase.
+As a Shopper, I want to apply a *promotion code discount* to *specific product* in my cart, so that I can get a discount on my purchase.
 
 ## Acceptance Criteria:
 - The API applies the promotion code `FIXEDAMOUNT2` discount to the specific product sku `STATIONERY-STAPLER-SWINGLINE` in the shopper cart.
+- The promotion code can be applied once at a time.
 - Returns a 200 OK with the updated cart details if the promotion code is applied successfully.
 
 ## Technical Requirements:
@@ -125,6 +136,25 @@ As a Shopper, I want to apply a promotion code discount to *specific product* in
 
 
 # Story 7:
+
+As a Shopper, I want to apply a *promotion code discount* to *my cart*, so that I can get a discount on my purchase.
+
+## Acceptance Criteria:
+- The API applies the promotion code `FIXEDAMOUNT10` discount to the shopper cart.
+- The promotion code can be applied once at a time.
+- Returns a 200 OK with the updated cart details if the promotion code is applied successfully.
+
+## Technical Requirements:
+- REST API Endpoint: POST /carts/{username}/promotions
+- Path Variable: {username} - Represents the unique user identifier.
+- Request Body: Content Type: application/json
+- Request Body Example: {"code": "FIXEDAMOUNT10"}
+
+## Assumption:
+- BFF (Backend for frontend) will handle the promotion code validation if the promotion code is valid or not.
+- BFF will call the promotion endpoint only if the promotion code is valid.
+
+# Story 8:
 
 As a Product Owner, I want to limit the discount amount when shopper apply promotion code to the cart, so that I can control the discount amount.
 
@@ -138,7 +168,7 @@ As a Product Owner, I want to limit the discount amount when shopper apply promo
 - Request Body: Content Type: application/json
 - Request Body Example: {"code": "THIRTYPERCENTOFFLIMIT200"}
 
-# Story 8:
+# Story 9:
 
 As a Shopper, I want to apply a promotional code to get free product, so that I can get a free item on my purchase.
 
@@ -152,7 +182,7 @@ As a Shopper, I want to apply a promotional code to get free product, so that I 
 - Request Body: Content Type: application/json
 - Request Body Example: {"code": "BUY2GET1FREE"}
 
-# Story 9:
+# Story 10:
 
 As a Shopper, I want to apply a promotional code to specific product to get discount, so that I can get a discount on my purchase.
 
@@ -165,7 +195,7 @@ As a Shopper, I want to apply a promotional code to specific product to get disc
 - Request Body: Content Type: application/json
 - Request Body Example: {"code": "SPECIFICPRODUCT30OFF", "productSkus": ["MOBILE-APPLE-IPHONE-12-PRO"]}
 
-# Story 10:
+# Story 11:
 As a Shopper, I want to to have a promotion applied to a product automatically, so that I can get a discount on my purchase.
 
 ## Acceptance Criteria:
@@ -178,7 +208,7 @@ As a Shopper, I want to to have a promotion applied to a product automatically, 
 - Request Body: Content Type: application/json
 - Request Body Example: {"productSku": "MOBILE-APPLE-IPHONE-12-PRO"}
 
-# Story 11:
+# Story 12:
 
 As a Shopper, I want to earn Kpoints for every purchase, so that I can redeem them for discounts on my next purchase.
 
@@ -197,7 +227,7 @@ As a Shopper, I want to earn Kpoints for every purchase, so that I can redeem th
 - any error should be handled and return 400 Bad Request with an appropriate error message if the request body is invalid.
 		for example: {"message": "Invalid request body"} with 400 status code
 
-# Story 12:
+# Story 13:
 
 As a Shopper, I want to redeem Kpoints for a discount on my next purchase, so that I can save money on my order.
 
@@ -216,7 +246,7 @@ As a Shopper, I want to redeem Kpoints for a discount on my next purchase, so th
 - any error should be handled and return 404 Not Found with an appropriate error message if the Kpoints are insufficient or invalid.
 		for example: {"message": "Insufficient Kpoints"} with 404 status code
 
-# Story 13:
+# Story 14:
 
 As a Shopper, I want to remove a specific product from my cart, so that I can update my purchase before checking out.
 
@@ -235,7 +265,7 @@ As a Shopper, I want to remove a specific product from my cart, so that I can up
 - any error should be handled and return 404 Not Found with an appropriate error message if the product doesn't exist in the cart.
 		for example: {"message": "Product not found in the cart"} with 404 status code
 
-# Story 14:
+# Story 15:
 
 As a Shopper, I want to view my cart details, so that I can review the products and discounts before checking out.
 
@@ -252,7 +282,7 @@ As a Shopper, I want to view my cart details, so that I can review the products 
 - any error should be handled and return 404 Not Found with an appropriate error message if the cart doesn't exist.
 		for example: {"message": "Cart not found"} with 404 status code
 
-# Story 15:
+# Story 16:
 
 As a Shopper, I want to place an order with the items in my cart, so that I can complete my purchase.
 
@@ -269,7 +299,7 @@ As a Shopper, I want to place an order with the items in my cart, so that I can 
 - any error should be handled and return 400 Bad Request with an appropriate error message if the cart is empty or the stock quantity is insufficient.
 		for example: {"message": "Cart is empty"} with 400 status code
 
-# Story 16:
+# Story 17:
 
 As a Product Owner I want to be able to charge shopping fee for the order in next 3 months, so that I can cover the delivery cost.
 
@@ -284,7 +314,6 @@ As a Product Owner I want to be able to charge shopping fee for the order in nex
 - Request Body: Content Type: application/json
 - Request Body Example: {"productSku": 1, "quantity": 2}
 - Response: 200 OK with the updated order details if the shopping fee is applied successfully
-
 
 
 <!-- Hints: collapse -->
@@ -337,7 +366,84 @@ As a Product Owner I want to be able to charge shopping fee for the order in nex
   }
 ```
 
+3. List Carts (GET /carts):
+
+```sql
+CREATE TABLE IF NOT EXISTS cart (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    discount DECIMAL(10, 2) default 0.00,
+    total_discount DECIMAL(10, 2) default 0.00,
+    promotion_codes VARCHAR(255) default '', -- comma-separated list of promotion codes
+    subtotal DECIMAL(10, 2) default 0.00,
+    grand_total DECIMAL(10, 2) default 0.00
+);
+```
+
+- Description: Retrieves a list of all carts.
+- Response:
+- Status Code: 200 OK
+- Content Type: application/json
+- Example Payload:
+
+```json
+[
+	{
+		"username": "TechNinja",
+		"items": [
+			{
+				"id": 1,
+				"username": "TechNinja",
+				"sku": "MOBILE-APPLE-IPHONE-12-PRO",
+				"name": "Apple iPhone 12 Pro",
+				"price": 20990.25,
+				"quantity": 1,
+				"discount": 0,
+				"promotionCodes": ""
+			}
+		],
+		"discount": 0,
+		"totalDiscount": 0,
+		"subtotal": 1,
+		"grandTotal": 1
+	}
+]
+```
+
+Diagram:
+```mermaid
+sequenceDiagram
+    participant Admin as Admin
+    participant BFF as BFF API (Backend-for-Frontend)
+    participant API as REST API (SpringBoot)
+    participant DB as Postgres SQL Database
+
+    Admin->>BFF: GET /carts
+    BFF->>API: GET /carts
+    API-->>DB: Query cart and cart_item tables
+    DB-->>API: Cart and Cart Item Data
+    API-->>API: Sum items price to subtotal
+    API-->>API: Compute cart grandTotal price
+    API-->>API: Build Cart Response
+    API-->>BFF: List of Carts with Cart Items
+    BFF-->>Admin: List of Carts with Cart Items
+```
+
 3. Add Product to Cart (POST /carts/{username}/items):
+
+```sql
+CREATE TABLE IF NOT EXISTS cart_item (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    sku VARCHAR(255) NOT NULL default '',
+    name VARCHAR(255) NOT NULL default '',
+    price DECIMAL(10, 2) default 0.00,
+    quantity INT NOT NULL default 0,
+    discount DECIMAL(10, 2) default 0.00,
+    promotion_codes VARCHAR(255) NOT NULL default '', -- comma-separated list of promotion codes
+    UNIQUE (username, sku)
+);
+```
 
 - Description: Adds a specific product to the user's cart.
 - Request:
@@ -345,8 +451,12 @@ As a Product Owner I want to be able to charge shopping fee for the order in nex
 - Example Payload: POST /carts/TechNinja/items
 ```json
 {
-	"productSku": "MOBILE-APPLE-IPHONE-12-PRO",
-	"quantity": 1
+  "sku": "MOBILE-APPLE-IPHONE-12-PRO",
+  "name": "Apple iPhone 12 Pro",
+  "price": 20990.25,
+  "quantity": 1,
+  "discount": 0,
+  "promotionCodes": ""
 }
 ```
 
@@ -356,20 +466,118 @@ As a Product Owner I want to be able to charge shopping fee for the order in nex
 - Example Payload:
 ```json
 {
-	"username": "TechNinja",
-	"items": [
-		{
-			"sku": "MOBILE-APPLE-IPHONE-12-PRO",
-			"name": "Apple iPhone 12 Pro",
-			"quantity": 1,
-			"price": 100.00,
-			"discount": 0.00,
-			"finalPrice": 100.00
-		}
-	],
-	"totalPrice": 100.00,
-	"totalDiscount": 0.00
+  "username": "TechNinja",
+  "items": [
+    {
+      "id": 1,
+      "username": "TechNinja",
+      "sku": "MOBILE-APPLE-IPHONE-12-PRO",
+      "name": "Apple iPhone 12 Pro",
+      "price": 20990.25,
+      "quantity": 1,
+      "discount": 0,
+      "promotionCodes": ""
+    }
+  ],
+  "discount": 0,
+  "totalDiscount": 0,
+  "subtotal": 20990.25,
+  "grandTotal": 20990.25,
+  "promotionCodes": ""
 }
+```
+
+Diagram:
+```mermaid
+sequenceDiagram
+    participant App as Mobile App
+    participant BFF as BFF API (Backend-for-Frontend)
+    participant API as REST API (SpringBoot)
+    participant DB as Postgres SQL Database
+
+    App->>BFF: POST /carts/{username}/items with product sku
+    BFF->>API: GET /product/{sku}
+    API-->>BFF: Product Information
+    BFF->>API: POST /carts/{username}/items with product info
+    API-->>DB: Query cart by {username}
+    DB-->>API: Cart details
+    API-->>DB: Query cart_items by {username}
+    DB-->>API: Cart Items details
+    API-->>API: sum items price to subtotal
+    API-->>API: compute cart grandTotal price
+    API-->>API: build Cart Response
+    API-->>BFF: Cart Response details
+    BFF-->>App: Cart Response details
+```
+
+
+4. Apply Promotion Code to Specific Product in Cart (POST /carts/{username}/promotions):
+
+- Description: Applies a promotion code discount to a specific product in the user's cart.
+- Request:
+- Content Type: application/json
+- Example Payload: POST /carts/TechNinja/promotions
+```json
+{
+  "code": "FIXEDAMOUNT2",
+  "name": "Fixed Amount $2 Off Specific Products",
+  "description": "Get $2 off on specific products.",
+  "startDate": "2024-03-25T10:30:00.000Z",
+  "endDate": "2025-05-25T10:30:00.000Z",
+  "discountType": "FIXED_AMOUNT",
+  "discountAmount": 2.00,
+  "applicableTo": "SPECIFIC_PRODUCTS",
+  "productSkus": "STATIONERY-STAPLER-SWINGLINE,STATIONERY-PENCIL-FABER-CASTELL"
+}
+```
+
+- Response:
+- Status Code: 200 OK
+- Content Type: application/json
+- Example Payload:
+
+```json
+{
+  "username": "TechNinja",
+  "items": [
+    {
+      "id": 1,
+      "username": "TechNinja",
+      "sku": "STATIONERY-STAPLER-SWINGLINE",
+      "name": "Staplers",
+      "price": 20.25,
+      "quantity": 1,
+      "discount": 2,
+      "promotionCodes": "FIXEDAMOUNT2"
+    }
+  ],
+  "discount": 0,
+  "totalDiscount": 2,
+  "subtotal": 20.25,
+  "grandTotal": 18.25,
+  "promotionCodes": ""
+}
+```
+
+Diagram:
+```mermaid
+sequenceDiagram
+    participant Shopper as Shopper
+    participant BFF as BFF API (Backend-for-Frontend)
+    participant API as REST API (SpringBoot)
+    participant DB as Postgres SQL Database
+
+    Shopper->>BFF: POST /carts/{username}/promotions with promotion code
+    BFF->>API: POST /carts/{username}/promotions with promotion code
+    API-->>DB: Query cart and cart items
+    DB-->>API: Cart and cart items
+    API-->>API: Apply promotion code discount to specific product in cart
+    API-->>API: Update cart with discount
+    API-->>API: Sum items price to subtotal
+    API-->>API: Compute cart grandTotal price
+    API-->>API: Build Cart Response
+    API-->>BFF: Cart with applied promotion code discount
+    BFF-->>Shopper: Cart with applied promotion code discount
 ```
 
 4. Apply Promotion Code to Cart (POST /carts/{username}/promotions):
@@ -380,7 +588,15 @@ As a Product Owner I want to be able to charge shopping fee for the order in nex
 - Example Payload: POST /carts/TechNinja/promotions
 ```json
 {
-	"code": "FIXEDAMOUNT10"
+  "code": "FIXEDAMOUNT10",
+  "name": "Fixed Amount $10 Off Entire Cart",
+  "description": "Get $10 off on your entire cart purchase.",
+  "startDate": "2024-03-25T10:30:00.000Z",
+  "endDate": "2025-05-25T10:30:00.000Z",
+  "discountType": "FIXED_AMOUNT",
+  "discountAmount": 10.00,
+  "applicableTo": "ENTIRE_CART",
+  "productSkus": ""
 }
 ```
 
@@ -391,46 +607,45 @@ As a Product Owner I want to be able to charge shopping fee for the order in nex
 
 ```json
 {
-	"username": "TechNinja",
-	"items": [
-		{
-			"sku": "MOBILE-APPLE-IPHONE-12-PRO",
-			"name": "Apple iPhone 12 Pro",
-			"quantity": 1,
-			"price": 100.00,
-			"discount": 10.00,
-			"finalPrice": 90.00,
-			"promotions": ["FIXEDAMOUNT10"]
-		}
-	],
-	"promotions": ["FIXED_A_MOUNT_10"],
-	"totalPrice": 90.00,
-	"totalDiscount": 10.00
+  "username": "TechNinja",
+  "items": [
+    {
+      "id": 1,
+      "username": "TechNinja",
+      "sku": "MOBILE-APPLE-IPHONE-12-PRO",
+      "name": "Apple iPhone 12 Pro",
+      "price": 20990.25,
+      "quantity": 1,
+      "discount": 0,
+      "promotionCodes": ""
+    }
+  ],
+  "discount": 10,
+  "totalDiscount": 10,
+  "subtotal": 20990.25,
+  "grandTotal": 20980.25,
+  "promotionCodes": "FIXEDAMOUNT10"
 }
 ```
 
-5. Earn Kpoints (POST /kpoints/{username}/earn):
+Diagram:
+```mermaid
+sequenceDiagram
+    participant Shopper as Shopper
+    participant BFF as BFF API (Backend-for-Frontend)
+    participant API as REST API (SpringBoot)
+    participant DB as Postgres SQL Database
 
-- Description: Adds Kpoints to the user's account based on the amount spent.
-- Request:
-- Content Type: application/json
-- Example Payload: POST /kpoints/TechNinja/earn
-
-```json
-{
-	"amount_spent": 100.00
-}
-```
-
-- Response:
-- Status Code: 200 OK
-- Content Type: application/json
-- Example Payload:
-```json
-{
-	"username": "TechNinja",
-	"kpoints": 10
-}
+    Shopper->>BFF: POST /carts/{username}/promotions with promotion code
+    BFF->>API: POST /carts/{username}/promotions with promotion code
+    API-->>DB: Query cart table
+    DB-->>API: Cart Data
+    API-->>API: Apply promotion code discount to cart
+    API-->>API: Update cart with discount
+    API-->>API: Compute cart grandTotal price
+    API-->>API: Build Cart Response
+    API-->>BFF: Cart with applied promotion code discount
+    BFF-->>Shopper: Cart with applied promotion code discount
 ```
 
 6. Paginate Products (GET /products):
