@@ -6,6 +6,7 @@ import jdk.jfr.Description;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.val;
 
 @Data
 @NoArgsConstructor
@@ -41,4 +42,21 @@ public class CartItem {
     @Description("total price after discount")
     @Column(name = "total")
     private BigDecimal total;
+
+    @ManyToOne
+    @JoinColumn(name="username", referencedColumnName = "username", insertable = false, updatable = false)
+    private Cart cart;
+
+    public CartItemResponse toCartItemResponse() {
+        val dto = new CartItemResponse();
+
+        dto.setSku(this.getSku());
+        dto.setName(this.getName());
+        dto.setPrice(this.getPrice());
+        dto.setQuantity(this.getQuantity());
+        dto.setPromotionCodes(this.getPromotionCodes());
+        dto.setDiscount(this.getDiscount());
+
+        return dto;
+    }
 }

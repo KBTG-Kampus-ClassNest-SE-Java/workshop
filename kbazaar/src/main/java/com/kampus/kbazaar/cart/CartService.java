@@ -3,6 +3,8 @@ package com.kampus.kbazaar.cart;
 import com.kampus.kbazaar.exceptions.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.val;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -43,6 +45,44 @@ public class CartService {
                 cartItemResponse.setDiscount(cartItem.getDiscount());
                 cartItemResponses.add(cartItemResponse);
             }
+            cartResponse.setItems(cartItemResponses);
+            cartResponses.add(cartResponse);
+        }
+        return cartResponses;
+    }
+
+    public List<CartResponse> getCartsV2() {
+        List<Cart> carts = cartRepository.findAll();
+        val cartResponses = new ArrayList<CartResponse>();
+
+        for (Cart cart : carts) {
+            val cartResponse = cart.toCartResponse();
+            val cartItemResponses = new ArrayList<CartItemResponse>();
+
+            for (CartItem cartItem : cart.getCartItems()) {
+                CartItemResponse cartItemResponse = cartItem.toCartItemResponse();
+                cartItemResponses.add(cartItemResponse);
+            }
+
+            cartResponse.setItems(cartItemResponses);
+            cartResponses.add(cartResponse);
+        }
+        return cartResponses;
+    }
+
+    public List<CartResponse> getCartsV3() {
+        List<Cart> carts = cartRepository.findAllWithItems();
+        val cartResponses = new ArrayList<CartResponse>();
+
+        for (Cart cart : carts) {
+            val cartResponse = cart.toCartResponse();
+            val cartItemResponses = new ArrayList<CartItemResponse>();
+
+            for (CartItem cartItem : cart.getCartItems()) {
+                CartItemResponse cartItemResponse = cartItem.toCartItemResponse();
+                cartItemResponses.add(cartItemResponse);
+            }
+
             cartResponse.setItems(cartItemResponses);
             cartResponses.add(cartResponse);
         }
