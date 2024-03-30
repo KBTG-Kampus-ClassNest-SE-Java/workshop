@@ -28,7 +28,7 @@ public class Cart {
     private BigDecimal totalDiscount;
 
     @Column(name = "promotion_codes")
-    private String promotionCodes;
+    private String promotionCodes = "";
 
     @Description("precisely reflect its pre-discount status")
     @Column(name = "subtotal")

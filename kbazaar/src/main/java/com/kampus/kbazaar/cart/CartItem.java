@@ -38,5 +38,5 @@ public class CartItem {
 
     @Description("Promotion codes applied to this cart item, separated by comma")
     @Column(name = "promotion_codes")
-    private String promotionCodes;
+    private String promotionCodes = "";
 }
