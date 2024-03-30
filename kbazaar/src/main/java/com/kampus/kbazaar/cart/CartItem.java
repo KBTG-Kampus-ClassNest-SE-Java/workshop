@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "cart")
-public class Cart {
+@Entity(name = "cart_item")
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -20,22 +20,25 @@ public class Cart {
     @Column(name = "username")
     private String username;
 
-    @Description("discount on cart")
-    @Column(name = "discount")
-    private BigDecimal discount;
+    @Column(name = "sku")
+    private String sku;
 
-    @Description("total discount product in cart")
-    @Column(name = "total_discount")
-    private BigDecimal totalDiscount;
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "price")
+    private BigDecimal price;
+
+    @Column(name = "quantity")
+    private Integer quantity;
 
     @Column(name = "promotion_codes")
     private String promotionCodes;
 
-    @Description("price total product in cart")
-    @Column(name = "sub_total")
-    private BigDecimal subtotal;
+    @Column(name = "discount")
+    private BigDecimal discount;
 
-    @Description("price total after discount all")
-    @Column(name = "grand_total")
-    private BigDecimal grandTotal;
+    @Description("total price after discount")
+    @Column(name = "total")
+    private BigDecimal total;
 }
