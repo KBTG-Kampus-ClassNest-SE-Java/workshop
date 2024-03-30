@@ -1,7 +1,10 @@
 package com.kampus.kbazaar.cart;
 
+import com.kampus.kbazaar.cartItem.CartItem;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
+
 import jdk.jfr.Description;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,6 +39,26 @@ public class Cart {
     @Description("the final, all-inclusive amount to be paid.")
     @Column(name = "grand_total")
     private BigDecimal grandTotal;
+
+    // Define CartItem relationship
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    private List<CartItem> items;
+
+    public List<CartItem> getItems() {
+        return items;
+    }
+
+    public void setTotalDiscount(BigDecimal totalDiscount) {
+        this.totalDiscount = totalDiscount;
+    }
+
+    public void setSubtotal(BigDecimal subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public void setGrandTotal(BigDecimal grandTotal) {
+        this.grandTotal = grandTotal;
+    }
 
     public String tryPush;
 }

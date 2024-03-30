@@ -76,4 +76,8 @@ public class Promotion {
                 this.minQuantity,
                 this.freeQuantity);
     }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 }
