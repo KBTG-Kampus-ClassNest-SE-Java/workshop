@@ -5,12 +5,10 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import com.kampus.kbazaar.exceptions.NotFoundException;
-
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -51,8 +49,8 @@ class ProductServiceTest {
         Page<Product> productPage = new PageImpl<>(productList, PageRequest.of(1, 1), 2);
 
         // Mock repository method
-        when(productRepository.findAll(ArgumentMatchers.any(PageRequest.class))).thenReturn(productPage);
-
+        when(productRepository.findAll(ArgumentMatchers.any(PageRequest.class)))
+                .thenReturn(productPage);
 
         // Call service method
         Page<ProductResponse> result = productService.getAll(1, 1);
@@ -67,10 +65,11 @@ class ProductServiceTest {
     @DisplayName("should return empty list when no product found")
     void shouldReturnEmptyListWhenNoProductFoundGetAllProducts() {
         // Mock repository method returning empty list
-        when(productRepository.findAll(ArgumentMatchers.any(PageRequest.class))).thenReturn(Page.empty());
+        when(productRepository.findAll(ArgumentMatchers.any(PageRequest.class)))
+                .thenReturn(Page.empty());
 
         // Call service method
-        Page<ProductResponse> result = productService.getAll(1,1);
+        Page<ProductResponse> result = productService.getAll(1, 1);
 
         // Assertions
         assertTrue(result.isEmpty());

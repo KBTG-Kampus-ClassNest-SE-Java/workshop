@@ -6,12 +6,10 @@ import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import java.util.List;
-
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
+import java.util.List;
 import lombok.val;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,17 +43,16 @@ public class ProductController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = NotFoundException.class)))
     @GetMapping("/products")
-    public ResponseEntity<List<ProductResponse>> getProducts(@Valid @Positive @RequestParam(defaultValue = "1") int page, @Valid @Positive @RequestParam(defaultValue = "50") int limit) {
+    public ResponseEntity<List<ProductResponse>> getProducts(
+            @Valid @Positive @RequestParam(defaultValue = "1") int page,
+            @Valid @Positive @RequestParam(defaultValue = "50") int limit) {
         val headers = new HttpHeaders();
 
-        val pages =  productService.getAll(page, limit);
+        val pages = productService.getAll(page, limit);
 
         PaginationUtils.appendPageInHeader(headers, pages);
 
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .headers(headers)
-                .body(pages.toList());
+        return ResponseEntity.status(HttpStatus.OK).headers(headers).body(pages.toList());
     }
 
     @ApiResponse(

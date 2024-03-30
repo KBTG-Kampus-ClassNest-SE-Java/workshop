@@ -8,7 +8,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.kampus.kbazaar.security.JwtAuthFilter;
-import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -50,12 +49,12 @@ public class ProductControllerTest {
         // Given
 
         // When & Then
-        when(productService.getAll(anyInt(),anyInt())).thenReturn(Page.empty());
+        when(productService.getAll(anyInt(), anyInt())).thenReturn(Page.empty());
 
         mockMvc.perform(get("/api/v1/products").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        verify(productService, times(1)).getAll(anyInt(),anyInt());
+        verify(productService, times(1)).getAll(anyInt(), anyInt());
     }
 
     @Test
