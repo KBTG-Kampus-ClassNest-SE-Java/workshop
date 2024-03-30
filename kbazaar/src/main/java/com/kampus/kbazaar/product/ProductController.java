@@ -1,7 +1,7 @@
 package com.kampus.kbazaar.product;
 
 import com.kampus.kbazaar.exceptions.NotFoundException;
-import com.kampus.kbazaar.model.PaginationResponse;
+import com.kampus.kbazaar.utils.PaginationUtils;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -11,6 +11,7 @@ import java.util.List;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import lombok.val;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,14 +48,14 @@ public class ProductController {
     public ResponseEntity<List<ProductResponse>> getProducts(@Valid @Positive @RequestParam(defaultValue = "1") int page, @Valid @Positive @RequestParam(defaultValue = "50") int limit) {
         val headers = new HttpHeaders();
 
-        val res =  productService.getAll(page, limit);
+        val pages =  productService.getAll(page, limit);
 
-        res.appendPageInHeader(headers);
+        PaginationUtils.appendPageInHeader(headers, pages);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .headers(headers)
-                .body(res.getData());
+                .body(pages.toList());
     }
 
     @ApiResponse(
