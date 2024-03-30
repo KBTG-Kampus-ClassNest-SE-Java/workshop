@@ -1,0 +1,1761 @@
+{
+	"info": {
+		"_postman_id": "83072d93-372a-47f1-958f-93f775228abe",
+		"name": "KBazaar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11196974"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "v1",
+					"item": [
+						{
+							"name": "carts",
+							"item": [
+								{
+									"name": "{username}",
+									"item": [
+										{
+											"name": "promotions",
+											"item": [
+												{
+													"name": "apply Promotion",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"promotionId\": \"<long>\",\n  \"code\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"discountType\": \"<string>\",\n  \"discountAmount\": \"<number>\",\n  \"maxDiscountAmount\": \"<number>\",\n  \"applicableTo\": \"<string>\",\n  \"productSkus\": \"<string>\",\n  \"minQuantity\": \"<integer>\",\n  \"freeQuantity\": \"<integer>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/carts/:username/promotions",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"carts",
+																":username",
+																"promotions"
+															],
+															"variable": [
+																{
+																	"key": "username",
+																	"value": "<string>",
+																	"description": "(Required) "
+																}
+															]
+														}
+													},
+													"response": [
+														{
+															"name": "OK",
+															"originalRequest": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"value": "application/json"
+																	},
+																	{
+																		"key": "Accept",
+																		"value": "*/*"
+																	},
+																	{
+																		"description": "Added as a part of security scheme: bearer",
+																		"key": "Authorization",
+																		"value": "Bearer <token>"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n  \"promotionId\": \"<long>\",\n  \"code\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"discountType\": \"<string>\",\n  \"discountAmount\": \"<number>\",\n  \"maxDiscountAmount\": \"<number>\",\n  \"applicableTo\": \"<string>\",\n  \"productSkus\": \"<string>\",\n  \"minQuantity\": \"<integer>\",\n  \"freeQuantity\": \"<integer>\"\n}",
+																	"options": {
+																		"raw": {
+																			"headerFamily": "json",
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/carts/:username/promotions",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"carts",
+																		":username",
+																		"promotions"
+																	],
+																	"variable": [
+																		{
+																			"key": "username"
+																		}
+																	]
+																}
+															},
+															"status": "OK",
+															"code": 200,
+															"_postman_previewlanguage": "text",
+															"header": [
+																{
+																	"key": "Content-Type",
+																	"value": "*/*"
+																}
+															],
+															"cookie": [],
+															"body": "{\n  \"username\": \"<string>\",\n  \"items\": [\n    {\n      \"id\": \"<long>\",\n      \"username\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<number>\",\n      \"quantity\": \"<integer>\",\n      \"discount\": \"<number>\",\n      \"promotionCodes\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"username\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<number>\",\n      \"quantity\": \"<integer>\",\n      \"discount\": \"<number>\",\n      \"promotionCodes\": \"<string>\"\n    }\n  ],\n  \"discount\": \"<number>\",\n  \"totalDiscount\": \"<number>\",\n  \"subtotal\": \"<number>\",\n  \"grandTotal\": \"<number>\",\n  \"promotionCodes\": \"<string>\"\n}"
+														},
+														{
+															"name": "Not Found",
+															"originalRequest": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"value": "application/json"
+																	},
+																	{
+																		"key": "Accept",
+																		"value": "*/*"
+																	},
+																	{
+																		"description": "Added as a part of security scheme: bearer",
+																		"key": "Authorization",
+																		"value": "Bearer <token>"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n  \"promotionId\": \"<long>\",\n  \"code\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"discountType\": \"<string>\",\n  \"discountAmount\": \"<number>\",\n  \"maxDiscountAmount\": \"<number>\",\n  \"applicableTo\": \"<string>\",\n  \"productSkus\": \"<string>\",\n  \"minQuantity\": \"<integer>\",\n  \"freeQuantity\": \"<integer>\"\n}",
+																	"options": {
+																		"raw": {
+																			"headerFamily": "json",
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/carts/:username/promotions",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"carts",
+																		":username",
+																		"promotions"
+																	],
+																	"variable": [
+																		{
+																			"key": "username"
+																		}
+																	]
+																}
+															},
+															"status": "Not Found",
+															"code": 404,
+															"_postman_previewlanguage": "text",
+															"header": [
+																{
+																	"key": "Content-Type",
+																	"value": "*/*"
+																}
+															],
+															"cookie": [],
+															"body": "{\n  \"timestamp\": \"<dateTime>\",\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"path\": \"<string>\"\n}"
+														},
+														{
+															"name": "Internal Server Error",
+															"originalRequest": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"value": "application/json"
+																	},
+																	{
+																		"key": "Accept",
+																		"value": "*/*"
+																	},
+																	{
+																		"description": "Added as a part of security scheme: bearer",
+																		"key": "Authorization",
+																		"value": "Bearer <token>"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n  \"promotionId\": \"<long>\",\n  \"code\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"discountType\": \"<string>\",\n  \"discountAmount\": \"<number>\",\n  \"maxDiscountAmount\": \"<number>\",\n  \"applicableTo\": \"<string>\",\n  \"productSkus\": \"<string>\",\n  \"minQuantity\": \"<integer>\",\n  \"freeQuantity\": \"<integer>\"\n}",
+																	"options": {
+																		"raw": {
+																			"headerFamily": "json",
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/carts/:username/promotions",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"carts",
+																		":username",
+																		"promotions"
+																	],
+																	"variable": [
+																		{
+																			"key": "username"
+																		}
+																	]
+																}
+															},
+															"status": "Internal Server Error",
+															"code": 500,
+															"_postman_previewlanguage": "text",
+															"header": [
+																{
+																	"key": "Content-Type",
+																	"value": "*/*"
+																}
+															],
+															"cookie": [],
+															"body": "{\n  \"timestamp\": \"<dateTime>\",\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"path\": \"<string>\"\n}"
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "items",
+											"item": [
+												{
+													"name": "add Item To Cart",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"id\": \"<long>\",\n  \"username\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"quantity\": \"<integer>\",\n  \"discount\": \"<number>\",\n  \"promotionCodes\": \"<string>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/carts/:username/items",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"carts",
+																":username",
+																"items"
+															],
+															"variable": [
+																{
+																	"key": "username",
+																	"value": "<string>",
+																	"description": "(Required) "
+																}
+															]
+														}
+													},
+													"response": [
+														{
+															"name": "OK",
+															"originalRequest": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"value": "application/json"
+																	},
+																	{
+																		"key": "Accept",
+																		"value": "*/*"
+																	},
+																	{
+																		"description": "Added as a part of security scheme: bearer",
+																		"key": "Authorization",
+																		"value": "Bearer <token>"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n  \"id\": \"<long>\",\n  \"username\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"quantity\": \"<integer>\",\n  \"discount\": \"<number>\",\n  \"promotionCodes\": \"<string>\"\n}",
+																	"options": {
+																		"raw": {
+																			"headerFamily": "json",
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/carts/:username/items",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"carts",
+																		":username",
+																		"items"
+																	],
+																	"variable": [
+																		{
+																			"key": "username"
+																		}
+																	]
+																}
+															},
+															"status": "OK",
+															"code": 200,
+															"_postman_previewlanguage": "text",
+															"header": [
+																{
+																	"key": "Content-Type",
+																	"value": "*/*"
+																}
+															],
+															"cookie": [],
+															"body": "{\n  \"username\": \"<string>\",\n  \"items\": [\n    {\n      \"id\": \"<long>\",\n      \"username\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<number>\",\n      \"quantity\": \"<integer>\",\n      \"discount\": \"<number>\",\n      \"promotionCodes\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"username\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<number>\",\n      \"quantity\": \"<integer>\",\n      \"discount\": \"<number>\",\n      \"promotionCodes\": \"<string>\"\n    }\n  ],\n  \"discount\": \"<number>\",\n  \"totalDiscount\": \"<number>\",\n  \"subtotal\": \"<number>\",\n  \"grandTotal\": \"<number>\",\n  \"promotionCodes\": \"<string>\"\n}"
+														},
+														{
+															"name": "Not Found",
+															"originalRequest": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"value": "application/json"
+																	},
+																	{
+																		"key": "Accept",
+																		"value": "*/*"
+																	},
+																	{
+																		"description": "Added as a part of security scheme: bearer",
+																		"key": "Authorization",
+																		"value": "Bearer <token>"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n  \"id\": \"<long>\",\n  \"username\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"quantity\": \"<integer>\",\n  \"discount\": \"<number>\",\n  \"promotionCodes\": \"<string>\"\n}",
+																	"options": {
+																		"raw": {
+																			"headerFamily": "json",
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/carts/:username/items",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"carts",
+																		":username",
+																		"items"
+																	],
+																	"variable": [
+																		{
+																			"key": "username"
+																		}
+																	]
+																}
+															},
+															"status": "Not Found",
+															"code": 404,
+															"_postman_previewlanguage": "text",
+															"header": [
+																{
+																	"key": "Content-Type",
+																	"value": "*/*"
+																}
+															],
+															"cookie": [],
+															"body": "{\n  \"timestamp\": \"<dateTime>\",\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"path\": \"<string>\"\n}"
+														},
+														{
+															"name": "Internal Server Error",
+															"originalRequest": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"value": "application/json"
+																	},
+																	{
+																		"key": "Accept",
+																		"value": "*/*"
+																	},
+																	{
+																		"description": "Added as a part of security scheme: bearer",
+																		"key": "Authorization",
+																		"value": "Bearer <token>"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n  \"id\": \"<long>\",\n  \"username\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"price\": \"<number>\",\n  \"quantity\": \"<integer>\",\n  \"discount\": \"<number>\",\n  \"promotionCodes\": \"<string>\"\n}",
+																	"options": {
+																		"raw": {
+																			"headerFamily": "json",
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/carts/:username/items",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"carts",
+																		":username",
+																		"items"
+																	],
+																	"variable": [
+																		{
+																			"key": "username"
+																		}
+																	]
+																}
+															},
+															"status": "Internal Server Error",
+															"code": 500,
+															"_postman_previewlanguage": "text",
+															"header": [
+																{
+																	"key": "Content-Type",
+																	"value": "*/*"
+																}
+															],
+															"cookie": [],
+															"body": "{\n  \"timestamp\": \"<dateTime>\",\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"path\": \"<string>\"\n}"
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "get Cart",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/carts",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"carts"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/carts",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"carts"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"username\": \"<string>\",\n    \"items\": [\n      {\n        \"id\": \"<long>\",\n        \"username\": \"<string>\",\n        \"sku\": \"<string>\",\n        \"name\": \"<string>\",\n        \"price\": \"<number>\",\n        \"quantity\": \"<integer>\",\n        \"discount\": \"<number>\",\n        \"promotionCodes\": \"<string>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"username\": \"<string>\",\n        \"sku\": \"<string>\",\n        \"name\": \"<string>\",\n        \"price\": \"<number>\",\n        \"quantity\": \"<integer>\",\n        \"discount\": \"<number>\",\n        \"promotionCodes\": \"<string>\"\n      }\n    ],\n    \"discount\": \"<number>\",\n    \"totalDiscount\": \"<number>\",\n    \"subtotal\": \"<number>\",\n    \"grandTotal\": \"<number>\",\n    \"promotionCodes\": \"<string>\"\n  },\n  {\n    \"username\": \"<string>\",\n    \"items\": [\n      {\n        \"id\": \"<long>\",\n        \"username\": \"<string>\",\n        \"sku\": \"<string>\",\n        \"name\": \"<string>\",\n        \"price\": \"<number>\",\n        \"quantity\": \"<integer>\",\n        \"discount\": \"<number>\",\n        \"promotionCodes\": \"<string>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"username\": \"<string>\",\n        \"sku\": \"<string>\",\n        \"name\": \"<string>\",\n        \"price\": \"<number>\",\n        \"quantity\": \"<integer>\",\n        \"discount\": \"<number>\",\n        \"promotionCodes\": \"<string>\"\n      }\n    ],\n    \"discount\": \"<number>\",\n    \"totalDiscount\": \"<number>\",\n    \"subtotal\": \"<number>\",\n    \"grandTotal\": \"<number>\",\n    \"promotionCodes\": \"<string>\"\n  }\n]"
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/carts",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"carts"
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"timestamp\": \"<dateTime>\",\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"path\": \"<string>\"\n}"
+										},
+										{
+											"name": "Internal Server Error",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/carts",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"carts"
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"timestamp\": \"<dateTime>\",\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"path\": \"<string>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "shoppers",
+							"item": [
+								{
+									"name": "{username}",
+									"item": [
+										{
+											"name": "get User By Username",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/shoppers/:username",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"shoppers",
+														":username"
+													],
+													"variable": [
+														{
+															"key": "username",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "get shopper by id",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/shoppers/:username",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"shoppers",
+																":username"
+															],
+															"variable": [
+																{
+																	"key": "username"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"id\": \"<long>\",\n  \"username\": \"<string>\",\n  \"email\": \"<string>\"\n}"
+												},
+												{
+													"name": "Not Found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/shoppers/:username",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"shoppers",
+																":username"
+															],
+															"variable": [
+																{
+																	"key": "username"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"timestamp\": \"<dateTime>\",\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"path\": \"<string>\"\n}"
+												},
+												{
+													"name": "internal server error",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/shoppers/:username",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"shoppers",
+																":username"
+															],
+															"variable": [
+																{
+																	"key": "username"
+																}
+															]
+														}
+													},
+													"status": "Internal Server Error",
+													"code": 500,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"cause\": {\n    \"stackTrace\": [\n      {\n        \"classLoaderName\": \"<string>\",\n        \"moduleName\": \"<string>\",\n        \"moduleVersion\": \"<string>\",\n        \"methodName\": \"<string>\",\n        \"fileName\": \"<string>\",\n        \"lineNumber\": \"<integer>\",\n        \"className\": \"<string>\",\n        \"nativeMethod\": \"<boolean>\"\n      },\n      {\n        \"classLoaderName\": \"<string>\",\n        \"moduleName\": \"<string>\",\n        \"moduleVersion\": \"<string>\",\n        \"methodName\": \"<string>\",\n        \"fileName\": \"<string>\",\n        \"lineNumber\": \"<integer>\",\n        \"className\": \"<string>\",\n        \"nativeMethod\": \"<boolean>\"\n      }\n    ],\n    \"message\": \"<string>\",\n    \"localizedMessage\": \"<string>\"\n  },\n  \"stackTrace\": [\n    {\n      \"classLoaderName\": \"<string>\",\n      \"moduleName\": \"<string>\",\n      \"moduleVersion\": \"<string>\",\n      \"methodName\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"lineNumber\": \"<integer>\",\n      \"className\": \"<string>\",\n      \"nativeMethod\": \"<boolean>\"\n    },\n    {\n      \"classLoaderName\": \"<string>\",\n      \"moduleName\": \"<string>\",\n      \"moduleVersion\": \"<string>\",\n      \"methodName\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"lineNumber\": \"<integer>\",\n      \"className\": \"<string>\",\n      \"nativeMethod\": \"<boolean>\"\n    }\n  ],\n  \"message\": \"<string>\",\n  \"suppressed\": [\n    {\n      \"stackTrace\": [\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        },\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        }\n      ],\n      \"message\": \"<string>\",\n      \"localizedMessage\": \"<string>\"\n    },\n    {\n      \"stackTrace\": [\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        },\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        }\n      ],\n      \"message\": \"<string>\",\n      \"localizedMessage\": \"<string>\"\n    }\n  ],\n  \"localizedMessage\": \"<string>\"\n}"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "get All Users",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/shoppers",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"shoppers"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "list all shoppers",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/shoppers",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"shoppers"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": \"<long>\",\n    \"username\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"username\": \"<string>\",\n    \"email\": \"<string>\"\n  }\n]"
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/shoppers",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"shoppers"
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"timestamp\": \"<dateTime>\",\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"path\": \"<string>\"\n}"
+										},
+										{
+											"name": "internal server error",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/shoppers",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"shoppers"
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"cause\": {\n    \"stackTrace\": [\n      {\n        \"classLoaderName\": \"<string>\",\n        \"moduleName\": \"<string>\",\n        \"moduleVersion\": \"<string>\",\n        \"methodName\": \"<string>\",\n        \"fileName\": \"<string>\",\n        \"lineNumber\": \"<integer>\",\n        \"className\": \"<string>\",\n        \"nativeMethod\": \"<boolean>\"\n      },\n      {\n        \"classLoaderName\": \"<string>\",\n        \"moduleName\": \"<string>\",\n        \"moduleVersion\": \"<string>\",\n        \"methodName\": \"<string>\",\n        \"fileName\": \"<string>\",\n        \"lineNumber\": \"<integer>\",\n        \"className\": \"<string>\",\n        \"nativeMethod\": \"<boolean>\"\n      }\n    ],\n    \"message\": \"<string>\",\n    \"localizedMessage\": \"<string>\"\n  },\n  \"stackTrace\": [\n    {\n      \"classLoaderName\": \"<string>\",\n      \"moduleName\": \"<string>\",\n      \"moduleVersion\": \"<string>\",\n      \"methodName\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"lineNumber\": \"<integer>\",\n      \"className\": \"<string>\",\n      \"nativeMethod\": \"<boolean>\"\n    },\n    {\n      \"classLoaderName\": \"<string>\",\n      \"moduleName\": \"<string>\",\n      \"moduleVersion\": \"<string>\",\n      \"methodName\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"lineNumber\": \"<integer>\",\n      \"className\": \"<string>\",\n      \"nativeMethod\": \"<boolean>\"\n    }\n  ],\n  \"message\": \"<string>\",\n  \"suppressed\": [\n    {\n      \"stackTrace\": [\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        },\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        }\n      ],\n      \"message\": \"<string>\",\n      \"localizedMessage\": \"<string>\"\n    },\n    {\n      \"stackTrace\": [\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        },\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        }\n      ],\n      \"message\": \"<string>\",\n      \"localizedMessage\": \"<string>\"\n    }\n  ],\n  \"localizedMessage\": \"<string>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "promotions",
+							"item": [
+								{
+									"name": "{code}",
+									"item": [
+										{
+											"name": "get Promotion By Code",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/promotions/:code",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"promotions",
+														":code"
+													],
+													"variable": [
+														{
+															"key": "code",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "get promotion by code",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/promotions/:code",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"promotions",
+																":code"
+															],
+															"variable": [
+																{
+																	"key": "code"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"promotionId\": \"<long>\",\n  \"code\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"endDate\": \"<dateTime>\",\n  \"discountType\": \"<string>\",\n  \"discountAmount\": \"<number>\",\n  \"maxDiscountAmount\": \"<number>\",\n  \"applicableTo\": \"<string>\",\n  \"productSkus\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"minQuantity\": \"<integer>\",\n  \"freeQuantity\": \"<integer>\"\n}"
+												},
+												{
+													"name": "promotion not found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/promotions/:code",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"promotions",
+																":code"
+															],
+															"variable": [
+																{
+																	"key": "code"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"cause\": {\n    \"stackTrace\": [\n      {\n        \"classLoaderName\": \"<string>\",\n        \"moduleName\": \"<string>\",\n        \"moduleVersion\": \"<string>\",\n        \"methodName\": \"<string>\",\n        \"fileName\": \"<string>\",\n        \"lineNumber\": \"<integer>\",\n        \"className\": \"<string>\",\n        \"nativeMethod\": \"<boolean>\"\n      },\n      {\n        \"classLoaderName\": \"<string>\",\n        \"moduleName\": \"<string>\",\n        \"moduleVersion\": \"<string>\",\n        \"methodName\": \"<string>\",\n        \"fileName\": \"<string>\",\n        \"lineNumber\": \"<integer>\",\n        \"className\": \"<string>\",\n        \"nativeMethod\": \"<boolean>\"\n      }\n    ],\n    \"message\": \"<string>\",\n    \"localizedMessage\": \"<string>\"\n  },\n  \"stackTrace\": [\n    {\n      \"classLoaderName\": \"<string>\",\n      \"moduleName\": \"<string>\",\n      \"moduleVersion\": \"<string>\",\n      \"methodName\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"lineNumber\": \"<integer>\",\n      \"className\": \"<string>\",\n      \"nativeMethod\": \"<boolean>\"\n    },\n    {\n      \"classLoaderName\": \"<string>\",\n      \"moduleName\": \"<string>\",\n      \"moduleVersion\": \"<string>\",\n      \"methodName\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"lineNumber\": \"<integer>\",\n      \"className\": \"<string>\",\n      \"nativeMethod\": \"<boolean>\"\n    }\n  ],\n  \"message\": \"<string>\",\n  \"suppressed\": [\n    {\n      \"stackTrace\": [\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        },\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        }\n      ],\n      \"message\": \"<string>\",\n      \"localizedMessage\": \"<string>\"\n    },\n    {\n      \"stackTrace\": [\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        },\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        }\n      ],\n      \"message\": \"<string>\",\n      \"localizedMessage\": \"<string>\"\n    }\n  ],\n  \"localizedMessage\": \"<string>\"\n}"
+												},
+												{
+													"name": "Internal Server Error",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/promotions/:code",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"promotions",
+																":code"
+															],
+															"variable": [
+																{
+																	"key": "code"
+																}
+															]
+														}
+													},
+													"status": "Internal Server Error",
+													"code": 500,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"timestamp\": \"<dateTime>\",\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"path\": \"<string>\"\n}"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "get All Promotions",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/promotions",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"promotions"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "list all promotions",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/promotions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"promotions"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"promotionId\": \"<long>\",\n    \"code\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"startDate\": \"<dateTime>\",\n    \"endDate\": \"<dateTime>\",\n    \"discountType\": \"<string>\",\n    \"discountAmount\": \"<number>\",\n    \"maxDiscountAmount\": \"<number>\",\n    \"applicableTo\": \"<string>\",\n    \"productSkus\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"minQuantity\": \"<integer>\",\n    \"freeQuantity\": \"<integer>\"\n  },\n  {\n    \"promotionId\": \"<long>\",\n    \"code\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"startDate\": \"<dateTime>\",\n    \"endDate\": \"<dateTime>\",\n    \"discountType\": \"<string>\",\n    \"discountAmount\": \"<number>\",\n    \"maxDiscountAmount\": \"<number>\",\n    \"applicableTo\": \"<string>\",\n    \"productSkus\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"minQuantity\": \"<integer>\",\n    \"freeQuantity\": \"<integer>\"\n  }\n]"
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/promotions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"promotions"
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"timestamp\": \"<dateTime>\",\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"path\": \"<string>\"\n}"
+										},
+										{
+											"name": "internal server error",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/promotions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"promotions"
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"cause\": {\n    \"stackTrace\": [\n      {\n        \"classLoaderName\": \"<string>\",\n        \"moduleName\": \"<string>\",\n        \"moduleVersion\": \"<string>\",\n        \"methodName\": \"<string>\",\n        \"fileName\": \"<string>\",\n        \"lineNumber\": \"<integer>\",\n        \"className\": \"<string>\",\n        \"nativeMethod\": \"<boolean>\"\n      },\n      {\n        \"classLoaderName\": \"<string>\",\n        \"moduleName\": \"<string>\",\n        \"moduleVersion\": \"<string>\",\n        \"methodName\": \"<string>\",\n        \"fileName\": \"<string>\",\n        \"lineNumber\": \"<integer>\",\n        \"className\": \"<string>\",\n        \"nativeMethod\": \"<boolean>\"\n      }\n    ],\n    \"message\": \"<string>\",\n    \"localizedMessage\": \"<string>\"\n  },\n  \"stackTrace\": [\n    {\n      \"classLoaderName\": \"<string>\",\n      \"moduleName\": \"<string>\",\n      \"moduleVersion\": \"<string>\",\n      \"methodName\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"lineNumber\": \"<integer>\",\n      \"className\": \"<string>\",\n      \"nativeMethod\": \"<boolean>\"\n    },\n    {\n      \"classLoaderName\": \"<string>\",\n      \"moduleName\": \"<string>\",\n      \"moduleVersion\": \"<string>\",\n      \"methodName\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"lineNumber\": \"<integer>\",\n      \"className\": \"<string>\",\n      \"nativeMethod\": \"<boolean>\"\n    }\n  ],\n  \"message\": \"<string>\",\n  \"suppressed\": [\n    {\n      \"stackTrace\": [\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        },\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        }\n      ],\n      \"message\": \"<string>\",\n      \"localizedMessage\": \"<string>\"\n    },\n    {\n      \"stackTrace\": [\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        },\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        }\n      ],\n      \"message\": \"<string>\",\n      \"localizedMessage\": \"<string>\"\n    }\n  ],\n  \"localizedMessage\": \"<string>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "products",
+							"item": [
+								{
+									"name": "{sku}",
+									"item": [
+										{
+											"name": "get Product By Id",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/products/:sku",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"products",
+														":sku"
+													],
+													"variable": [
+														{
+															"key": "sku",
+															"value": "<string>",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "get product by sku",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/products/:sku",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"products",
+																":sku"
+															],
+															"variable": [
+																{
+																	"key": "sku"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"price\": \"<number>\",\n  \"quantity\": \"<integer>\"\n}"
+												},
+												{
+													"name": "product not found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/products/:sku",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"products",
+																":sku"
+															],
+															"variable": [
+																{
+																	"key": "sku"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"cause\": {\n    \"stackTrace\": [\n      {\n        \"classLoaderName\": \"<string>\",\n        \"moduleName\": \"<string>\",\n        \"moduleVersion\": \"<string>\",\n        \"methodName\": \"<string>\",\n        \"fileName\": \"<string>\",\n        \"lineNumber\": \"<integer>\",\n        \"className\": \"<string>\",\n        \"nativeMethod\": \"<boolean>\"\n      },\n      {\n        \"classLoaderName\": \"<string>\",\n        \"moduleName\": \"<string>\",\n        \"moduleVersion\": \"<string>\",\n        \"methodName\": \"<string>\",\n        \"fileName\": \"<string>\",\n        \"lineNumber\": \"<integer>\",\n        \"className\": \"<string>\",\n        \"nativeMethod\": \"<boolean>\"\n      }\n    ],\n    \"message\": \"<string>\",\n    \"localizedMessage\": \"<string>\"\n  },\n  \"stackTrace\": [\n    {\n      \"classLoaderName\": \"<string>\",\n      \"moduleName\": \"<string>\",\n      \"moduleVersion\": \"<string>\",\n      \"methodName\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"lineNumber\": \"<integer>\",\n      \"className\": \"<string>\",\n      \"nativeMethod\": \"<boolean>\"\n    },\n    {\n      \"classLoaderName\": \"<string>\",\n      \"moduleName\": \"<string>\",\n      \"moduleVersion\": \"<string>\",\n      \"methodName\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"lineNumber\": \"<integer>\",\n      \"className\": \"<string>\",\n      \"nativeMethod\": \"<boolean>\"\n    }\n  ],\n  \"message\": \"<string>\",\n  \"suppressed\": [\n    {\n      \"stackTrace\": [\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        },\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        }\n      ],\n      \"message\": \"<string>\",\n      \"localizedMessage\": \"<string>\"\n    },\n    {\n      \"stackTrace\": [\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        },\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        }\n      ],\n      \"message\": \"<string>\",\n      \"localizedMessage\": \"<string>\"\n    }\n  ],\n  \"localizedMessage\": \"<string>\"\n}"
+												},
+												{
+													"name": "Internal Server Error",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/products/:sku",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"products",
+																":sku"
+															],
+															"variable": [
+																{
+																	"key": "sku"
+																}
+															]
+														}
+													},
+													"status": "Internal Server Error",
+													"code": 500,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"timestamp\": \"<dateTime>\",\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"path\": \"<string>\"\n}"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "get Products",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/products",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"products"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "list all products",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/products",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"products"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"sku\": \"<string>\",\n    \"price\": \"<number>\",\n    \"quantity\": \"<integer>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"sku\": \"<string>\",\n    \"price\": \"<number>\",\n    \"quantity\": \"<integer>\"\n  }\n]"
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/products",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"products"
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"timestamp\": \"<dateTime>\",\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"path\": \"<string>\"\n}"
+										},
+										{
+											"name": "internal server error",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/products",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"products"
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"cause\": {\n    \"stackTrace\": [\n      {\n        \"classLoaderName\": \"<string>\",\n        \"moduleName\": \"<string>\",\n        \"moduleVersion\": \"<string>\",\n        \"methodName\": \"<string>\",\n        \"fileName\": \"<string>\",\n        \"lineNumber\": \"<integer>\",\n        \"className\": \"<string>\",\n        \"nativeMethod\": \"<boolean>\"\n      },\n      {\n        \"classLoaderName\": \"<string>\",\n        \"moduleName\": \"<string>\",\n        \"moduleVersion\": \"<string>\",\n        \"methodName\": \"<string>\",\n        \"fileName\": \"<string>\",\n        \"lineNumber\": \"<integer>\",\n        \"className\": \"<string>\",\n        \"nativeMethod\": \"<boolean>\"\n      }\n    ],\n    \"message\": \"<string>\",\n    \"localizedMessage\": \"<string>\"\n  },\n  \"stackTrace\": [\n    {\n      \"classLoaderName\": \"<string>\",\n      \"moduleName\": \"<string>\",\n      \"moduleVersion\": \"<string>\",\n      \"methodName\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"lineNumber\": \"<integer>\",\n      \"className\": \"<string>\",\n      \"nativeMethod\": \"<boolean>\"\n    },\n    {\n      \"classLoaderName\": \"<string>\",\n      \"moduleName\": \"<string>\",\n      \"moduleVersion\": \"<string>\",\n      \"methodName\": \"<string>\",\n      \"fileName\": \"<string>\",\n      \"lineNumber\": \"<integer>\",\n      \"className\": \"<string>\",\n      \"nativeMethod\": \"<boolean>\"\n    }\n  ],\n  \"message\": \"<string>\",\n  \"suppressed\": [\n    {\n      \"stackTrace\": [\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        },\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        }\n      ],\n      \"message\": \"<string>\",\n      \"localizedMessage\": \"<string>\"\n    },\n    {\n      \"stackTrace\": [\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        },\n        {\n          \"classLoaderName\": \"<string>\",\n          \"moduleName\": \"<string>\",\n          \"moduleVersion\": \"<string>\",\n          \"methodName\": \"<string>\",\n          \"fileName\": \"<string>\",\n          \"lineNumber\": \"<integer>\",\n          \"className\": \"<string>\",\n          \"nativeMethod\": \"<boolean>\"\n        }\n      ],\n      \"message\": \"<string>\",\n      \"localizedMessage\": \"<string>\"\n    }\n  ],\n  \"localizedMessage\": \"<string>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "health",
+							"item": [
+								{
+									"name": "health",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/health",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"health"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Health check",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/health",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"health"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "<string>"
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/health",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"health"
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"timestamp\": \"<dateTime>\",\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"path\": \"<string>\"\n}"
+										},
+										{
+											"name": "Internal Server Error",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/health",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"health"
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"timestamp\": \"<dateTime>\",\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"path\": \"<string>\"\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearerToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		}
+	]
+}
