@@ -1,0 +1,30 @@
+meta {
+  name: Cart - Add Item
+  type: http
+  seq: 10
+}
+
+post {
+  url: http://localhost:8080/api/v1/carts/TechNinja/items
+  body: json
+  auth: bearer
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6WyJST0xFX1NIT1BQRVIiXSwic3ViIjoic2hvcHBlciIsImlhdCI6MTcxMTA4MTk1OSwiZXhwIjoxNzQyNjE3OTU5fQ.hwpc_6CL_ZENHurOaZEYg3tz9FVBgOYa7ILF063stxs
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6WyJST0xFX1NIT1BQRVIiXSwic3ViIjoic2hvcHBlciIsImlhdCI6MTcxMTA4MTk1OSwiZXhwIjoxNzQyNjE3OTU5fQ.hwpc_6CL_ZENHurOaZEYg3tz9FVBgOYa7ILF063stxs
+}
+
+body:json {
+  {
+    "sku": "MOBILE-APPLE-IPHONE-12-PRO",
+    "name": "Apple iPhone 12 Pro",
+    "price": 20990.25,
+    "quantity": 1,
+    "discount": 0,
+    "promotionCodes": ""
+  }
+}
