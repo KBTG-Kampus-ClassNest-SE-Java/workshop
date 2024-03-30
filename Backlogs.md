@@ -447,18 +447,24 @@ CREATE TABLE IF NOT EXISTS cart_item (
 - Example Payload:
 ```json
 {
-	"username": "TechNinja",
-	"items": [
-		{
-			"sku": "MOBILE-APPLE-IPHONE-12-PRO",
-			"name": "Apple iPhone 12 Pro",
-			"quantity": 1,
-			"price": 20990.25,
-			"discount": 0.00
-		}
-	],
-	"totalPrice": 20990.25,
-	"totalDiscount": 0.00
+  "username": "TechNinja",
+  "items": [
+    {
+      "id": 1,
+      "username": "TechNinja",
+      "sku": "MOBILE-APPLE-IPHONE-12-PRO",
+      "name": "Apple iPhone 12 Pro",
+      "price": 20990.25,
+      "quantity": 1,
+      "discount": 0,
+      "promotionCodes": ""
+    }
+  ],
+  "discount": 0,
+  "totalDiscount": 0,
+  "subtotal": 20990.25,
+  "grandTotal": 20990.25,
+  "promotionCodes": ""
 }
 ```
 
