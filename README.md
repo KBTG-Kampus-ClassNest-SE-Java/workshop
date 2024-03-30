@@ -205,3 +205,4 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 ```console
 terraform destroy -var group_name="group-<ID>" --auto-approve
 ```
+nong todo remove
