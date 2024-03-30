@@ -1,5 +1,6 @@
 package com.kampus.kbazaar.product;
 
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -19,6 +20,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -48,12 +50,12 @@ public class ProductControllerTest {
         // Given
 
         // When & Then
-        when(productService.getAll()).thenReturn(new ArrayList<>());
+        when(productService.getAll(anyInt(),anyInt())).thenReturn(Page.empty());
 
         mockMvc.perform(get("/api/v1/products").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        verify(productService, times(1)).getAll();
+        verify(productService, times(1)).getAll(anyInt(),anyInt());
     }
 
     @Test

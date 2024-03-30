@@ -1,8 +1,12 @@
 package com.kampus.kbazaar.product;
 
 import com.kampus.kbazaar.exceptions.NotFoundException;
-import java.util.List;
+
 import java.util.Optional;
+
+import lombok.val;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,8 +18,10 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<ProductResponse> getAll() {
-        return productRepository.findAll().stream().map(Product::toResponse).toList();
+    public Page<ProductResponse> getAll(int page , int limit) {
+        val pageReq = PageRequest.of(page - 1, limit);
+
+        return productRepository.findAll(pageReq).map(Product::toResponse);
     }
 
     public ProductResponse getBySku(String sku) {
