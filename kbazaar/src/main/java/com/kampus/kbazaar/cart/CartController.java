@@ -33,10 +33,9 @@ public class CartController {
     }
 
     @PostMapping("/carts/{username}/items")
-    public CartResponse addItemToCart(
-            @PathVariable String username, @RequestBody CartItem product) {
-        product.setUsername(username);
-        List<CartItem> items = cartService.addItemToCart(username, product);
+    public CartResponse addItemToCart(@PathVariable String username, @RequestBody CartItem item) {
+        item.setUsername(username);
+        List<CartItem> items = cartService.addItemToCart(username, item);
         BigDecimal subtotal = cartService.sumOfSubtotalPrice(items);
         Cart cart = cartService.createOrUpdateCart(username, subtotal);
         return cart.toResponse(items);
