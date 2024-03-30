@@ -410,6 +410,25 @@ CREATE TABLE IF NOT EXISTS cart (
 ]
 ```
 
+Diagram:
+```mermaid
+sequenceDiagram
+    participant Admin as Admin
+    participant BFF as BFF API (Backend-for-Frontend)
+    participant API as REST API (SpringBoot)
+    participant DB as Postgres SQL Database
+
+    Admin->>BFF: GET /carts
+    BFF->>API: GET /carts
+    API-->>DB: Query cart and cart_item tables
+    DB-->>API: Cart and Cart Item Data
+    API-->>API: Sum items price to subtotal
+    API-->>API: Compute cart grandTotal price
+    API-->>API: Build Cart Response
+    API-->>BFF: List of Carts with Cart Items
+    BFF-->>Admin: List of Carts with Cart Items
+```
+
 3. Add Product to Cart (POST /carts/{username}/items):
 
 ```sql
@@ -447,20 +466,50 @@ CREATE TABLE IF NOT EXISTS cart_item (
 - Example Payload:
 ```json
 {
-	"username": "TechNinja",
-	"items": [
-		{
-			"sku": "MOBILE-APPLE-IPHONE-12-PRO",
-			"name": "Apple iPhone 12 Pro",
-			"quantity": 1,
-			"price": 20990.25,
-			"discount": 0.00
-		}
-	],
-	"totalPrice": 20990.25,
-	"totalDiscount": 0.00
+  "username": "TechNinja",
+  "items": [
+    {
+      "id": 1,
+      "username": "TechNinja",
+      "sku": "MOBILE-APPLE-IPHONE-12-PRO",
+      "name": "Apple iPhone 12 Pro",
+      "price": 20990.25,
+      "quantity": 1,
+      "discount": 0,
+      "promotionCodes": ""
+    }
+  ],
+  "discount": 0,
+  "totalDiscount": 0,
+  "subtotal": 20990.25,
+  "grandTotal": 20990.25,
+  "promotionCodes": ""
 }
 ```
+
+Diagram:
+```mermaid
+sequenceDiagram
+    participant App as Mobile App
+    participant BFF as BFF API (Backend-for-Frontend)
+    participant API as REST API (SpringBoot)
+    participant DB as Postgres SQL Database
+
+    App->>BFF: POST /carts/{username}/items with product sku
+    BFF->>API: GET /product/{sku}
+    API-->>BFF: Product Information
+    BFF->>API: POST /carts/{username}/items with product info
+    API-->>DB: Query cart by {username}
+    DB-->>API: Cart details
+    API-->>DB: Query cart_items by {username}
+    DB-->>API: Cart Items details
+    API-->>API: sum items price to subtotal
+    API-->>API: compute cart grandTotal price
+    API-->>API: build Cart Response
+    API-->>BFF: Cart Response details
+    BFF-->>App: Cart Response details
+```
+
 
 4. Apply Promotion Code to Specific Product in Cart (POST /carts/{username}/promotions):
 
@@ -510,7 +559,26 @@ CREATE TABLE IF NOT EXISTS cart_item (
 }
 ```
 
+Diagram:
+```mermaid
+sequenceDiagram
+    participant Shopper as Shopper
+    participant BFF as BFF API (Backend-for-Frontend)
+    participant API as REST API (SpringBoot)
+    participant DB as Postgres SQL Database
 
+    Shopper->>BFF: POST /carts/{username}/promotions with promotion code
+    BFF->>API: POST /carts/{username}/promotions with promotion code
+    API-->>DB: Query cart and cart items
+    DB-->>API: Cart and cart items
+    API-->>API: Apply promotion code discount to specific product in cart
+    API-->>API: Update cart with discount
+    API-->>API: Sum items price to subtotal
+    API-->>API: Compute cart grandTotal price
+    API-->>API: Build Cart Response
+    API-->>BFF: Cart with applied promotion code discount
+    BFF-->>Shopper: Cart with applied promotion code discount
+```
 
 4. Apply Promotion Code to Cart (POST /carts/{username}/promotions):
 
@@ -558,6 +626,26 @@ CREATE TABLE IF NOT EXISTS cart_item (
   "grandTotal": 20980.25,
   "promotionCodes": "FIXEDAMOUNT10"
 }
+```
+
+Diagram:
+```mermaid
+sequenceDiagram
+    participant Shopper as Shopper
+    participant BFF as BFF API (Backend-for-Frontend)
+    participant API as REST API (SpringBoot)
+    participant DB as Postgres SQL Database
+
+    Shopper->>BFF: POST /carts/{username}/promotions with promotion code
+    BFF->>API: POST /carts/{username}/promotions with promotion code
+    API-->>DB: Query cart table
+    DB-->>API: Cart Data
+    API-->>API: Apply promotion code discount to cart
+    API-->>API: Update cart with discount
+    API-->>API: Compute cart grandTotal price
+    API-->>API: Build Cart Response
+    API-->>BFF: Cart with applied promotion code discount
+    BFF-->>Shopper: Cart with applied promotion code discount
 ```
 
 6. Paginate Products (GET /products):
