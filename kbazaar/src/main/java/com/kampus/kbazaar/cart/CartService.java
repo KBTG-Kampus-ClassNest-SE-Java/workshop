@@ -1,6 +1,8 @@
 package com.kampus.kbazaar.cart;
 
 import com.kampus.kbazaar.exceptions.NotFoundException;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,5 +89,26 @@ public class CartService {
             cartResponses.add(cartResponse);
         }
         return cartResponses;
+    }
+
+    // TODO poc interface
+    public BigDecimal calculateDiscountPrice(Cart cart) {
+        // TODO implement
+        return BigDecimal.ZERO;
+    }
+
+    public void updateGrandTotalPrice(Long id, BigDecimal discount) {
+        // find by id
+        // for update discount, grand total price to item
+        // update discount, grand total price to cart
+        // TODO implement
+    }
+
+    // example add product to cart
+    public void addSkuToCart(String username, String skuCode) {
+        // do insert cart item by username
+        // val cart = cartRepository.save(entity);
+        // val grandTotalPrice = calculateGrandTotalPrice(cart);
+        // updateGrandTotalPrice();
     }
 }
