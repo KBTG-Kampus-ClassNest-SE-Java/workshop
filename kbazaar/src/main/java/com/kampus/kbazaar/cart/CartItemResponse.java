@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 public class CartItemResponse {
     private String sku;
-
     private String name;
     private BigDecimal price;
     private Integer quantity;
