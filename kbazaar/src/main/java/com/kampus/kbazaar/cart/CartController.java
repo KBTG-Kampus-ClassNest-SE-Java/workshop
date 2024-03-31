@@ -2,7 +2,6 @@ package com.kampus.kbazaar.cart;
 
 import com.kampus.kbazaar.promotion.Promotion;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +23,9 @@ public class CartController {
             return List.of();
         }
 
-        List<CartResponse> responses = new ArrayList<>();
-        for (Cart cart : carts) {
-            List<CartItem> items = cartService.getCartItems(cart.getUsername());
-            responses.add(cart.toResponse(items));
-        }
-        return responses;
+        return carts.stream()
+                .map(cart -> cart.toResponse(cartService.getCartItems(cart.getUsername())))
+                .toList();
     }
 
     @PostMapping("/carts/{username}/items")
